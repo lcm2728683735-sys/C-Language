@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "DynamicArray.h"
+#include "array.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -34,7 +34,7 @@ int main()
     InsertTail(a,CreateStu("zhangsan",20));
     InsertTail(a,CreateStu("lisi",21));
     InsertTail(a,CreateStu("wangwu",19));
-    DArrayFast
     FreeDArray(a);
+
     return 0;
 }
