@@ -1,0 +1,40 @@
+#include <stdlib.h>
+#include "array.h"
+#include <stdio.h>
+#include <string.h>
+
+struct Student
+{
+    char *name;
+    int age;
+};
+typedef struct Student Stu;
+
+Stu* CreateStu(const char *name,int age)
+{
+    Stu *s = (Stu*)malloc(sizeof(Stu));
+    if(s == NULL)
+    {
+        printf("student malloc error!\n");
+        return NULL;
+    }
+    s->name = strdup(name);
+    s->age = age;
+}
+
+void FreeStu(void *ptr)
+{
+    Stu *s = (Stu *)ptr;
+    printf("学生姓名；%s 年龄：%d\n",s->name,s->age);
+}
+
+int main()
+{
+    DArray *a = InitDArray(FreeStu);
+    InsertTail(a,CreateStu("zhangsan",20));
+    InsertTail(a,CreateStu("lisi",21));
+    InsertTail(a,CreateStu("wangwu",19));
+    FreeDArray(a);
+
+    return 0;
+}
