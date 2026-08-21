@@ -3,20 +3,7 @@
 #include <time.h>
 #include <unistd.h>
 #include "input.h"
-
-struct UI
-{
-    const char *Sort;
-    int pass;
-    int step;
-    int compare_count;
-    int swap_count;
-    const char *status;
-};
-typedef struct UI UI;
-
-
-
+#include "sorter.h"
 
 
 void PrintUI(UI ui)
@@ -99,9 +86,3 @@ void BubbleSort(int *arr, int size)
     RefreshUI(arr, size, Bubble);
 }
 
-int main()
-{
-    int test_data[] = {528, -121, 314, -624, 105, 999, -50, 234};
-    int size = sizeof(test_data) / sizeof(test_data[0]);
-    BubbleSort(test_data,size);
-}

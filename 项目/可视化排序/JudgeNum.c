@@ -3,7 +3,7 @@
 #include "JudgeNum.h"
 
 // 判断是否为数字
-int JudgeNum(const char *str)
+int JudgeNum(const char *str[])
 {
     if (str == NULL || *str == '\0')
     {
@@ -37,9 +37,9 @@ int JudgeNum(const char *str)
 }
 
 //判断数组里每个元素
-int ValidStruct(InputArray arr)
+int ValidStruct(const char *str[],int size)
 {
-    if(arr.size < 5 || arr.size>25)
+    if(size < 5 ||size>25)
     {
         printf("数组元素个数不在合法范围内，请重新输入！");
         return 0;
@@ -47,10 +47,10 @@ int ValidStruct(InputArray arr)
     //引入状态变量
     int All_Right = 1;
 
-    for (int i = 0; i < arr.size;i++)
+    for (int i = 0; i < size;i++)
     {
 
-        if(!JudgeNum(arr.array[i]))
+        if(!JudgeNum(str[i]))
         {
             All_Right = 0;
         }
@@ -61,15 +61,15 @@ int ValidStruct(InputArray arr)
 int main()
 {
 
-    // 用例 2：数量符合要求（5个），但包含非法字符 "314a" 和 "528gs"
-    char *test2[] = {"-121", "314", "105", "528", "999"};
-    InputArray input2 = { test2, sizeof(test2) / sizeof(test2[0]) };
+    // // 用例 2：数量符合要求（5个），但包含非法字符 "314a" 和 "528gs"
+    // char *test2[] = {"-121", "314", "105", "528", "999"};
+    // InputArray input2 = { test2, sizeof(test2) / sizeof(test2[0]) };
 
-    printf("============ 测试带负号===========\n");
-    if (ValidStruct(input2)) {
-        printf(">>> 结果：校验通过\n\n");
-    } else {
-        printf(">>> 结果：校验失败\n\n");
-    }
+    // printf("============ 测试带负号===========\n");
+    // if (ValidStruct(input2)) {
+    //     printf(">>> 结果：校验通过\n\n");
+    // } else {
+    //     printf(">>> 结果：校验失败\n\n");
+    // }
     return 0;
 }
