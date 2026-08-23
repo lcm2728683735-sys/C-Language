@@ -3,21 +3,22 @@
 #include "JudgeNum.h"
 
 // 判断是否为数字
-int JudgeNum(const char *str[])
+int JudgeNum(const char *str)
 {
-    if (str == NULL || *str == '\0')
+    if (str == NULL || str[0] == '\0')
     {
         printf("输入为空\n");
         return 0;
     }
-    //判断负数
-    if(str[0] == '-' && str[1] == '\0')
+
+    if (str[0] == '-' && str[1] == '\0')
     {
-        printf("单个字符 '-'是非法输入！\n");
+        printf("单个字符 '-' 是非法输入！\n");
         return 0;
     }
 
     int Start_Index = 0;
+
     if (str[0] == '-')
     {
         Start_Index = 1;
@@ -29,39 +30,42 @@ int JudgeNum(const char *str[])
     {
         if (str[i] < '0' || str[i] > '9')
         {
-            printf("字符 '%c' 是非法字符，请重新输入！\n", str[i]);
+            printf("字符串 \"%s\" 中包含非法字符 '%c'！\n",
+                   str, str[i]);
+
             JudgeResult = 0;
+            break;
         }
     }
+
     return JudgeResult;
 }
-
 //判断数组里每个元素
-int ValidStruct(const char *str[],int size)
+int ValidStruct(char *str[], int size)
 {
-    if(size < 5 ||size>25)
+    if (size < 5 || size > 25)
     {
-        printf("数组元素个数不在合法范围内，请重新输入！");
+        printf("数组元素个数不在合法范围内，请重新输入！\n");
         return 0;
     }
-    //引入状态变量
+
     int All_Right = 1;
 
-    for (int i = 0; i < size;i++)
+    for (int i = 0; i < size; i++)
     {
-
-        if(!JudgeNum(str[i]))
+        if (!JudgeNum(str[i]))
         {
             All_Right = 0;
         }
     }
+
     return All_Right;
 }
 
-int main()
-{
+// int main()
+// {
 
-    // // 用例 2：数量符合要求（5个），但包含非法字符 "314a" 和 "528gs"
+    // 用例 2：数量符合要求（5个），但包含非法字符 "314a" 和 "528gs"
     // char *test2[] = {"-121", "314", "105", "528", "999"};
     // InputArray input2 = { test2, sizeof(test2) / sizeof(test2[0]) };
 
@@ -71,5 +75,5 @@ int main()
     // } else {
     //     printf(">>> 结果：校验失败\n\n");
     // }
-    return 0;
-}
+    // return 0;
+// }

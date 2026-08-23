@@ -10,8 +10,8 @@
 // };
 // typedef struct InputArray InputArray;
 
-int JudgeNum(const char *str[]);
+int JudgeNum(const char *str);
 
-int ValidStruct(const char *str[],int size);
+int ValidStruct( char *str[],int size);
 
 #endif

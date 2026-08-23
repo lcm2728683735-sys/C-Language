@@ -26,7 +26,7 @@ void RandomCube()
             }
             printf("\n");
         }
-        return 0;
+        return;
     }
     break;
     case 2:
@@ -45,7 +45,7 @@ void RandomCube()
             }
             printf("\n");
         }
-        return 0;
+        return;
     }
     break;
     case 3:
@@ -64,7 +64,7 @@ void RandomCube()
             }
             printf("\n");
         }
-        return 0;
+        return;
     }
     break;
     case 4:
@@ -83,7 +83,7 @@ void RandomCube()
             }
             printf("\n");
         }
-        return 0;
+        return;
     }
     break;
     case 5:
@@ -102,7 +102,7 @@ void RandomCube()
             }
             printf("\n");
         }
-        return 0;
+        return;
     }
     break;
     case 6:
@@ -121,7 +121,7 @@ void RandomCube()
             }
             printf("\n");
         }
-        return 0;
+        return;
     }
     break;
     case 7:
@@ -140,7 +140,7 @@ void RandomCube()
             }
             printf("\n");
         }
-        return 0;
+        return;
     }
     break;
 
