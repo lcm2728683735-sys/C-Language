@@ -3,6 +3,7 @@
 #include <time.h>
 #include <ncurses.h>
 #include <locale.h>
+#include <unistd.h>
 enum CubeType
 {
     CUBE_I = 0,
@@ -121,7 +122,7 @@ Cube SpinCube(Cube cube)
     return cube;
 }
 
-// è¾“å…¥å‡½æ•°
+// ¼üÅÌÊäÈë
 
 Cube KeyboardInput(Cube ActiveCube)
 {
@@ -150,7 +151,7 @@ Cube KeyboardInput(Cube ActiveCube)
     case KEY_DOWN:
     case 's':
     case 'S':
-        ActiveCube.y++;
+        ActiveCube.y--;
         break;
 
     case 'q':
@@ -161,6 +162,20 @@ Cube KeyboardInput(Cube ActiveCube)
     return ActiveCube;
 }
 
+int counter(Cube cube)
+{
+    int count = 0;
+    count++;
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            cube.shape[i][j] =cube.shape[i][j-1];
+        }
+    }
+    sleep(1);
+    return count;
+}
 // int main()
 // {
 //     // ç”Ÿæˆéšæœºæ—¶é—´
@@ -190,13 +205,16 @@ int main()
 
     while (1)
     {
+        counter(myCube);
         myCube = KeyboardInput(myCube);
 
         clear();
 
         PrintCube(myCube);
 
-        printw("åæ ‡ï¼š(%d, %d)\n", myCube.x, myCube.y);
+        printw("zuobiao:(%d, %d)\n", myCube.x, myCube.y);
+
+        // myCube.y - counter();
 
         refresh();
 

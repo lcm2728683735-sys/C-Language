@@ -30,7 +30,11 @@ void PrintBoard()
     printf("\033[0m");
 }
 
+
+
+
 int main()
 {
+    PrintBoard();
     return 0;
 }

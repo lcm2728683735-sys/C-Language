@@ -17,11 +17,12 @@ void PrintUI(UI ui)
 }
 
 
-void RefreshUI(const int *arr, int size, UI Sort)
+void RefreshUI(const int *arr, int size, UI Sort,int sleepTime)
 {
     printf("\033[H\033[J");
     PrintUI(Sort);
     PrintBar(arr, size);
+    usleep(sleepTime);
 }
 
 void print(int *arr, int size)
@@ -63,8 +64,8 @@ void BubbleSort(int *arr, int size)
             Bubble.compare_count++;
             snprintf(status, sizeof(status), "正在比较 %d 和 %d", arr[j], arr[j + 1]);
             Bubble.status = status;
-            RefreshUI(arr, size, Bubble);
-            usleep(100000);
+            RefreshUI(arr, size, Bubble,100000);
+            
             if (arr[j] > arr[j + 1])
             {
 
@@ -74,8 +75,7 @@ void BubbleSort(int *arr, int size)
                 Bubble.swap_count++;
                 Bubble.status = status;
             }
-            RefreshUI(arr, size, Bubble);
-            usleep(200000);
+            RefreshUI(arr, size, Bubble,200000);
         }
         if (flag == 0)
         {
@@ -83,6 +83,6 @@ void BubbleSort(int *arr, int size)
         }
     }
     Bubble.status = "排序完成";
-    RefreshUI(arr, size, Bubble);
+    RefreshUI(arr, size, Bubble,0);
 }
 

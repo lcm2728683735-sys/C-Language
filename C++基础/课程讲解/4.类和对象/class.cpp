@@ -4,9 +4,15 @@
 class Student
 {
 public:
+
+    static const Student& getInstance()
+    {
+        static Student s;
+        return s;
+    } 
     //声明
 
-    void SetName(std::string name)
+    void SetName(std::string name) 
     {
         m_name = name; 
     }
@@ -19,6 +25,13 @@ public:
     {
         std::cout<<"学生姓名"<<m_name<<"学生年龄："<<m_age<<std::endl;
     };
+
+    Student(){};
+    Student(const Student& stu)
+    {
+        
+    }
+
 private:
     //成员变量（属性）
     std::string m_name;

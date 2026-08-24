@@ -14,6 +14,8 @@ struct UI
 };
 typedef struct UI UI;
 
+typedef void(* PrintFunc)(int idx1,int idx2 ,UI Sort);
+
 void PrintUI(UI ui);
 
 void print(int *arr, int size);
