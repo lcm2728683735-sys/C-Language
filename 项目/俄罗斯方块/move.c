@@ -122,7 +122,7 @@ Cube SpinCube(Cube cube)
     return cube;
 }
 
-// ¼üÅÌÊäÈë
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 Cube KeyboardInput(Cube ActiveCube)
 {
@@ -173,7 +173,7 @@ int counter(Cube cube)
             cube.shape[i][j] =cube.shape[i][j-1];
         }
     }
-    sleep(1);
+    // sleep(1);
     return count;
 }
 // int main()
@@ -202,7 +202,7 @@ int main()
     noecho();
     nodelay(stdscr, TRUE);
     Cube myCube = CreateCube();
-
+    int time = 0;
     while (1)
     {
         counter(myCube);
@@ -213,12 +213,15 @@ int main()
         PrintCube(myCube);
 
         printw("zuobiao:(%d, %d)\n", myCube.x, myCube.y);
+        printw("TIME:%d\n",time);
+        time++;
 
         // myCube.y - counter();
 
         refresh();
 
-        napms(50);
+        // napms(50);
+        usleep(100000);
     }
 
     endwin();
