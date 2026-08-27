@@ -3,12 +3,19 @@
 #include <numeric>
 int main()
 {
-    Fraction a(1,6);
-    Fraction b(1,3);
+    Fraction a(1,2);
+    Fraction b(1,6);
     Fraction c;
-    c = a + b;
-    
-    c.show();
+    // c = a / b;
+    // c.AutoSimplify();
+    // c.show();
+
+    // a+=b;
+    // a.AutoSimplify();
+    // a.show();
+
+    std::cout<<(a<b)<<std::endl;
+
     return 0;
 }
 

@@ -1,5 +1,5 @@
 #include <iostream>
-
+//策略模式
 class Sort
 {
 public:
@@ -24,7 +24,13 @@ public:
 class FastSort:public Sort
 {
 public:
-    void Fsort(int *a,int start,int end)
+    void sort(int *a,int size)
+    {
+        std::cout<<"快速排序"<<std::endl;
+        FSort(a,0,size - 1);
+    }
+private:
+    void FSort(int *a,int start,int end)
     {
         if(start >= end)
             return;
@@ -42,12 +48,27 @@ public:
             if(left < right)
                 a[left++] = a[right];
         }
+        FSort(a,start,left-1);
+        FSort(a,right+1,end);
     }
 };
 
+void S(Sort *s)
+{
+    int a[] = {3,1,2};
+    s->sort(a,3);
+    for(int i = 0;i<3;i++)
+    {
+        std::cout<<a[i]<<" ";
+    }
+    std::cout<<std::endl;
+}
 
 int main ()
 {
+    Sort *s1 = new BubbleSort;
+    Sort *s2 = new FastSort;
+    // Sort *s3 = new InsertSort;
     BubbleSort *s = new BubbleSort;
     return 0;
 }
