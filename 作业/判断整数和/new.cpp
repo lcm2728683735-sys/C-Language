@@ -1,35 +1,32 @@
 #include <iostream>
 #include <cstring>
 
-int Sum(int *arr, int len, int k)
+int Sum(int *nums,int length,int k)
 {
-    if (arr == NULL)
+    if(nums == NULL)
         return 0;
-    if (len < 0)
+    if(length < 0)
         return 0;
     int left = 0;
     int right = 0;
-    int sum = arr[0];
+    int sum = nums[0];
     int count = 0;
-    //std::cout << "left:" << left << " right:" << right << " sum:" << sum  << std::endl;
-    while (left <= right && right < len)
+    while(left<= right&& right<length)
     {
         if(sum <= k)
         {
             if(sum == k)
                 count++;
             right++;
-            if(right < len)
-                sum += arr[right];
+            if (right<length)
+            sum += nums[right]; 
         }
         else if(sum > k)
         {
-            sum -= arr[left];
+            sum -= nums[left];
             left++;
         }
     }
-
-
     return count;
 }
 
