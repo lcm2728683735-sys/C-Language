@@ -80,8 +80,6 @@ void DoubleLinkList::UpDateByElement(const ElementType &oldValue, const ElementT
 
 ElementType &DoubleLinkList::operator[](int index)
 {
-    // if(index < 0|| index >=size)
-    //     return ;
     Node *travelPoint = head->next;
     for(int i = 0;i<index;i++)
     {
