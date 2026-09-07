@@ -10,11 +10,9 @@ int main()
     {
         tree.Insert(a[i]);
     }
+    
+
     tree.show();
-    tree.RemoveByElement(4);
-    tree.RemoveByElement(3);
-    tree.RemoveByElement(7);
-    tree.RemoveByElement(1);
     tree.show();
 
 

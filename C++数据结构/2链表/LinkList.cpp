@@ -159,6 +159,11 @@ void LinkList::Reserve2()
     head->next = Reserve2(head->next);
 }
 
+void LinkList::Reserve4()
+{
+    head->next = Reserve3(head->next);
+}
+
 LinkList LinkList::Merge(const LinkList &list)
 {
     LinkList result;
@@ -224,6 +229,22 @@ LinkList::Node* LinkList::Reserve2(Node *node)
         return newHeader;
     }
 }
+
+LinkList:: Node *LinkList::Reserve3(Node * node)
+{
+    Node * newhead = nullptr;
+    Node * temp = nullptr;
+    while(travelPoint != nullptr)
+    {
+        temp = travelPoint->next;
+        travelPoint->next = new1;
+        travelPoint = temp;
+    }
+    return temp;
+}
+
+
+
 
 void LinkList::show()
 {

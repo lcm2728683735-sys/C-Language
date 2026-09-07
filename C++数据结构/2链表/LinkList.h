@@ -22,6 +22,8 @@ public:
     void Sort();
     void Reserve();
     void Reserve2();
+    void Reserve4();
+
     LinkList Merge(const LinkList & list);
 private:
 
@@ -34,6 +36,7 @@ private:
     };
     void FastSort(Node *start,Node *end);
     Node * Reserve2(Node *node);
+    Node * Reserve3(Node *node);
     Node * head; //头指针
     size_t size; //节点个数
 };

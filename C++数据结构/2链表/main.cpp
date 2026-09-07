@@ -26,11 +26,12 @@ int main()
     // l.Sort();
     // l.show();
 
-    l.show();
-    l2.show();
-    DoubleLinkList l3;
-    l3 = l.Merge(l2);
-    l3.show();
+    // l.show();
+    // l2.show();
+    // DoubleLinkList l3;
+    // l3 = l.Merge(l2);
+    // l3.show();
+
     // for(int i = 0;i < 10;i++)
     // {
     //     l.InsertHead(i+1);
@@ -47,6 +48,9 @@ int main()
     // l.show();
     // LinkList l3 = l.Merge(l2);
     // l3.show();
-    // return 0;
+
+    l.show();
+    l.show();
+    return 0;
 
 }
