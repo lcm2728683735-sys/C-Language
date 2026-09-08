@@ -14,7 +14,7 @@ int main()
     }
 
     l.show();
-    l.Reserve4();
+    l.Reserve3();
     l.show();
     return 0;
 

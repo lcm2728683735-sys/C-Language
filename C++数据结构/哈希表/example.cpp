@@ -6,7 +6,7 @@ int Hash(char i)
 
 int main ()
 {
-    std::string s1 = "hash";
+    std::string s1 = "haah";
     std::string s2 = "haha";
     int hash1[26] = {0};
     int hash2[26] = {0};

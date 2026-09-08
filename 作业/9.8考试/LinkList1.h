@@ -1,14 +1,14 @@
-#ifndef __LINKLIST_H_
-#define __LINKLIST_H_
+#ifndef __LINKLIST1_H_
+#define __LINKLIST1_H_
 
 #include <stddef.h>
 using ElementType = int;
-class LinkList
+class LinkList1
 {
 public:
-    LinkList();
-    LinkList(const LinkList & list);
-    ~LinkList();
+    LinkList1();
+    LinkList1(const LinkList1 & list);
+    ~LinkList1();
     void show();
     //尾插法
     void InsertTail(const ElementType & element);
@@ -23,8 +23,9 @@ public:
     void Reserve();
     void Reserve2();
     void Reserve3();
+    bool FindSq();
 
-    LinkList Merge(const LinkList & list);
+    LinkList1 Merge(const LinkList1 & list);
 private:
 
     //节点

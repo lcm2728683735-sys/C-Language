@@ -1,25 +1,22 @@
-#include "BinaryTree.h"
+#include "BinaryTree1.h"
 #include <iostream>
-#include "BinaryTree.h"
-#include "BinaryTree.h"
-#include "BinaryTree.h"
 
-BinaryTree::BinaryTree()
+BinaryTree1::BinaryTree1()
 {
     root = nullptr;
 }
 
-BinaryTree::~BinaryTree()
+BinaryTree1::~BinaryTree1()
 {
     FreeNode(root);
 }
 
-void BinaryTree::Insert(const ElementType &element)
+void BinaryTree1::Insert(const ElementType &element)
 {
     root = InsertNode(root, element);
 }
 
-void BinaryTree::show()
+void BinaryTree1::show()
 {
     std::cout << "前：";
     PrevTravel(root);
@@ -34,21 +31,22 @@ void BinaryTree::show()
     std::cout << std::endl;
 }
 
-ElementType *BinaryTree::FindElement(const ElementType &element)
+ElementType *BinaryTree1::FindElement(const ElementType &element)
 {
     return FindNode(root, element);
 }
 
-void BinaryTree::RemoveByElement(const ElementType &element)
+
+void BinaryTree1::RemoveByElement(const ElementType &element)
 {
     root = RemoveNode(root, element);
 }
 
-BinaryTree::TreeNode *BinaryTree::InsertNode(TreeNode *node, const ElementType &element)
+BinaryTree1::TreeNode1 *BinaryTree1::InsertNode(TreeNode1 *node, const ElementType &element)
 {
     // 终止
     if (node == nullptr)
-        return new TreeNode(element);
+        return new TreeNode1(element);
     // 数据已经存在
     if (node->value == element)
         return node;
@@ -92,7 +90,7 @@ BinaryTree::TreeNode *BinaryTree::InsertNode(TreeNode *node, const ElementType &
     return node;
 }
 
-void BinaryTree::PrevTravel(TreeNode *node)
+void BinaryTree1::PrevTravel(TreeNode1 *node)
 {
     if (node == nullptr)
         return;
@@ -101,7 +99,7 @@ void BinaryTree::PrevTravel(TreeNode *node)
     PrevTravel(node->right);
 }
 
-void BinaryTree::MidTravel(TreeNode *node)
+void BinaryTree1::MidTravel(TreeNode1 *node)
 {
     if (node == nullptr)
         return;
@@ -110,7 +108,7 @@ void BinaryTree::MidTravel(TreeNode *node)
     MidTravel(node->right);
 }
 
-void BinaryTree::PostTravel(TreeNode *node)
+void BinaryTree1::PostTravel(TreeNode1 *node)
 {
     if (node == nullptr)
         return;
@@ -119,7 +117,7 @@ void BinaryTree::PostTravel(TreeNode *node)
     std::cout << node->value << " ";
 }
 
-void BinaryTree::FreeNode(TreeNode *node)
+void BinaryTree1::FreeNode(TreeNode1 *node)
 {
     if (node == nullptr)
         return;
@@ -128,7 +126,7 @@ void BinaryTree::FreeNode(TreeNode *node)
     delete node;
 }
 
-ElementType *BinaryTree::FindNode(TreeNode *node, const ElementType &element)
+ElementType *BinaryTree1::FindNode(TreeNode1 *node, const ElementType &element)
 {
     if (node == nullptr)
         return nullptr;
@@ -142,7 +140,7 @@ ElementType *BinaryTree::FindNode(TreeNode *node, const ElementType &element)
     return nullptr;
 }
 
-BinaryTree::TreeNode *BinaryTree::RemoveNode(TreeNode *node, const ElementType &element)
+BinaryTree1::TreeNode1 *BinaryTree1::RemoveNode(TreeNode1 *node, const ElementType &element)
 {
     if (node == nullptr)
     {
@@ -165,13 +163,13 @@ BinaryTree::TreeNode *BinaryTree::RemoveNode(TreeNode *node, const ElementType &
         }
         else if (node->left != nullptr && node->right != nullptr)
         {
-            TreeNode *min = GetMinNode(node->right);
+            TreeNode1 *min = GetMinNode(node->right);
             node->value = min->value;
             node->right = RemoveNode(node->right, min->value);
         }
         else
         {
-            TreeNode *ChildNode = node->left ? node->left : node->right;
+            TreeNode1 *ChildNode = node->left ? node->left : node->right;
             delete node;
             node = ChildNode;
         }
@@ -192,7 +190,7 @@ BinaryTree::TreeNode *BinaryTree::RemoveNode(TreeNode *node, const ElementType &
     if (LRDvtion(node) < -1)
     {
         // 右右失衡
-        if (LRDvtion(node->right)< 0 )
+        if (LRDvtion(node->right) < 0)
         {
             node = RotateLeft(node);
         }
@@ -205,43 +203,108 @@ BinaryTree::TreeNode *BinaryTree::RemoveNode(TreeNode *node, const ElementType &
     return node;
 }
 
-BinaryTree::TreeNode *BinaryTree::GetMinNode(TreeNode *node)
+BinaryTree1::TreeNode1 *BinaryTree1::GetMinNode(TreeNode1 *node)
 {
-    TreeNode *MinNode = node;
+    TreeNode1 *MinNode = node;
     while (MinNode->left != nullptr)
         MinNode = MinNode->left;
     return MinNode;
 }
 
-BinaryTree::TreeNode *BinaryTree::RotateRight(TreeNode *node)
+BinaryTree1::TreeNode1 *BinaryTree1::RotateRight(TreeNode1 *node)
 {
-    TreeNode *t = node->left;
+    TreeNode1 *t = node->left;
     node->left = t->right;
     t->right = node;
     return t;
 }
 
-BinaryTree::TreeNode *BinaryTree::RotateLeft(TreeNode *node)
+BinaryTree1::TreeNode1 *BinaryTree1::RotateLeft(TreeNode1 *node)
 {
-    TreeNode *t = node->right;
+    TreeNode1 *t = node->right;
     node->right = t->left;
     t->left = node;
     return t;
 }
 
-BinaryTree::TreeNode *BinaryTree::RotateLeftRight(TreeNode *node)
+BinaryTree1::TreeNode1 *BinaryTree1::RotateLeftRight(TreeNode1 *node)
 {
     node->left = RotateLeft(node->left);
     return RotateRight(node);
 }
 
-BinaryTree::TreeNode *BinaryTree::RotateRightLeft(TreeNode *node)
+BinaryTree1::TreeNode1 *BinaryTree1::RotateRightLeft(TreeNode1 *node)
 {
     node->right = RotateLeft(node->right);
     return RotateLeft(node);
 }
 
-int BinaryTree::GetNodeHeight(TreeNode *node)
+BinaryTree1::TreeNode1 *BinaryTree1::CommonAncestor(TreeNode1 *a, TreeNode1 *b)
+{
+    if (a == nullptr || b == nullptr)
+        return nullptr;
+    int depthA = 0, depthB = 0;
+    TreeNode1 * tempA = a;
+    TreeNode1 * tempB = b;
+    while(tempA != root && tempA != nullptr)
+    {
+        tempA = tempA->parent;
+        depthA++;
+    }
+    while(tempB != root && tempB != nullptr)
+    {
+        tempB = tempB->parent;
+        depthB++;
+    }
+    while(depthA > depthB)
+    {
+        a=a->parent;
+        depthA--;
+    }
+    while(depthB > depthA)
+    {
+        b=b->parent;
+        depthB--;
+    }
+    while (a != b)
+    {
+        a = a->parent;
+        b = b->parent;
+    }
+    return a;
+}
+
+BinaryTree1::TreeNode1 *BinaryTree1::FindNodeByValue(const ElementType &element)
+{
+    return FindNodeByValue(root,element);
+}
+
+BinaryTree1::TreeNode1 *BinaryTree1::FindNodeByValue(TreeNode1 *node, const ElementType &element)
+{
+    if(node == nullptr)
+        return nullptr;
+    if(element == node->value)
+        return node;
+    if(element > node->value)
+        return FindNodeByValue(node->right,element);
+    else
+        return FindNodeByValue(node->left,element);
+}
+
+ElementType *BinaryTree1::CommonAncestor(const ElementType &a, const ElementType &b)
+{
+    TreeNode1 * A = FindNodeByValue(a);
+    TreeNode1 * B = FindNodeByValue(b);
+    TreeNode1 * C = CommonAncestor(A,B);
+    if(C != nullptr)
+        return &(C->value);
+
+    return nullptr;
+}
+
+
+
+int BinaryTree1::GetNodeHeight(TreeNode1 *node)
 {
     if (node == nullptr)
         return 0;
@@ -250,9 +313,11 @@ int BinaryTree::GetNodeHeight(TreeNode *node)
     return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
 }
 
-int BinaryTree::LRDvtion(TreeNode *node)
+int BinaryTree1::LRDvtion(TreeNode1 *node)
 {
     if (node == nullptr)
         return 0;
     return GetNodeHeight(node->left) - GetNodeHeight(node->right);
 }
+
+

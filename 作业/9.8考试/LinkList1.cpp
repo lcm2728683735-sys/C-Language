@@ -1,13 +1,12 @@
-#include "LinkList.h"
+#include "LinkList1.h"
 #include <iostream>
-#include "LinkList.h"
 
-LinkList::LinkList() : size(0)
+LinkList1::LinkList1() : size(0)
 {
     head = new Node(0); // 头节点
 }
 
-LinkList::LinkList(const LinkList &list)
+LinkList1::LinkList1(const LinkList1 &list)
 {
     size = list.size;
     head = new Node(0);
@@ -19,7 +18,7 @@ LinkList::LinkList(const LinkList &list)
     }
 }
 
-LinkList::~LinkList()
+LinkList1::~LinkList1()
 {
     while (head != nullptr)
     {
@@ -29,7 +28,7 @@ LinkList::~LinkList()
     }
 }
 // 尾插法     时间复杂度  O(n)
-void LinkList::InsertTail(const ElementType &element)
+void LinkList1::InsertTail(const ElementType &element)
 {
     Node *travelPoint = head;
     // 找尾巴
@@ -40,14 +39,14 @@ void LinkList::InsertTail(const ElementType &element)
     travelPoint->next = new Node(element);
     size++;
 }
-void LinkList::InsertHead(const ElementType &element)
+void LinkList1::InsertHead(const ElementType &element)
 {
     Node *newNode = new Node(element); // O(1)
     newNode->next = head->next;
     head->next = newNode;
     size++;
 }
-void LinkList::InsertByIndex(int index, const ElementType &element)
+void LinkList1::InsertByIndex(int index, const ElementType &element)
 {
     if (index < 0 || index > size)
         return;
@@ -61,7 +60,7 @@ void LinkList::InsertByIndex(int index, const ElementType &element)
     travelPoint->next = newNode;
     size++;
 }
-void LinkList::RemoveByIndex(int index)
+void LinkList1::RemoveByIndex(int index)
 {
     if (index < 0 || index >= size)
         return;
@@ -74,7 +73,7 @@ void LinkList::RemoveByIndex(int index)
     travelPoint->next = freeNode->next;
     delete freeNode;
 }
-void LinkList::RemoveByElement(const ElementType &element)
+void LinkList1::RemoveByElement(const ElementType &element)
 {
     Node *travelPoint = head;
     while (travelPoint->next != nullptr)
@@ -90,7 +89,7 @@ void LinkList::RemoveByElement(const ElementType &element)
             travelPoint = travelPoint->next;
     }
 }
-void LinkList::UndateByIndex(int index, const ElementType &element)
+void LinkList1::UndateByIndex(int index, const ElementType &element)
 {
     if (index < 0 || index >= size)
         return;
@@ -102,7 +101,7 @@ void LinkList::UndateByIndex(int index, const ElementType &element)
     travelPoint->value = element;
 }
 
-void LinkList::UpdateByElement(const ElementType &oldValue, const ElementType &newValue)
+void LinkList1::UpdateByElement(const ElementType &oldValue, const ElementType &newValue)
 {
     Node *travelPoint = head->next;
     while (travelPoint != nullptr)
@@ -113,7 +112,7 @@ void LinkList::UpdateByElement(const ElementType &oldValue, const ElementType &n
     }
 }
 
-void LinkList::BubbleSort()
+void LinkList1::BubbleSort()
 {
     for (int i = 0; i < size - 1; i++)
     {
@@ -134,12 +133,12 @@ void LinkList::BubbleSort()
     }
 }
 
-void LinkList::Sort()
+void LinkList1::Sort()
 {
     FastSort(head->next,nullptr);
 }
 
-void LinkList::Reserve()
+void LinkList1::Reserve()
 {
     Node *prev = nullptr;
     Node *cur = head->next; 
@@ -159,9 +158,9 @@ void LinkList::Reserve()
 
 
 
-LinkList LinkList::Merge(const LinkList &list)
+LinkList1 LinkList1::Merge(const LinkList1 &list)
 {
-    LinkList result;
+    LinkList1 result;
     Node *p1 = head->next;
     Node *p2 = list.head->next;
     while (p1 && p2)
@@ -190,7 +189,7 @@ LinkList LinkList::Merge(const LinkList &list)
     return result;
 }
 
-void LinkList::FastSort(Node *start, Node *end)
+void LinkList1::FastSort(Node *start, Node *end)
 {
     if(start == end)
         return;
@@ -212,7 +211,7 @@ void LinkList::FastSort(Node *start, Node *end)
     FastSort(slow->next,end);
 }
 
-LinkList::Node* LinkList::Reserve2(Node *node)
+LinkList1::Node* LinkList1::Reserve2(Node *node)
 {
     if(node->next == nullptr)
         return node;
@@ -225,12 +224,12 @@ LinkList::Node* LinkList::Reserve2(Node *node)
     }
 }
 
-void LinkList::Reserve2()
+void LinkList1::Reserve2()
 {
     head->next = Reserve2(head->next);
 }
 
-LinkList:: Node *LinkList::Reserve3(Node * node)
+LinkList1:: Node *LinkList1::Reserve3(Node * node)
 {
     Node* travelPoint = node;
     Node * newhead = nullptr;
@@ -244,7 +243,7 @@ LinkList:: Node *LinkList::Reserve3(Node * node)
     }
     return newhead;
 }
-void LinkList::Reserve3()
+void LinkList1::Reserve3()
 {
     if (head == nullptr || head->next == nullptr) return;
     head->next = Reserve3(head->next);   // 只反转 head 后面的部分
@@ -252,7 +251,7 @@ void LinkList::Reserve3()
 
 
 
-void LinkList::show()
+void LinkList1::show()
 {
     std::cout << "size : " << size << std::endl;
     Node *travelPoint = head->next;
@@ -262,4 +261,19 @@ void LinkList::show()
         travelPoint = travelPoint->next;
     }
     std::cout << std::endl;
+}
+
+bool LinkList1::FindSq()
+{
+    Node * Slow = head;
+    Node * Quick = head;
+
+    while (Quick != nullptr && Quick->next != nullptr)
+    {
+        Slow = Slow->next;
+        Quick = Quick->next->next;
+        if(Slow == Quick)
+            return true;
+    }
+    return false;
 }
