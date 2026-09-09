@@ -18,7 +18,7 @@
 //     std::swap(array[i], array[end]);
 //     return i;                       // 返回最终位置
 // }
-
+    
 // void Fast_sort_no_recur(int *a,int start,int end)
 // {
 //     LinkStack s; 

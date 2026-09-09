@@ -24,7 +24,8 @@ public:
     void Reserve2();
     void Reserve3();
     bool FindSq();
-
+    int GetLinkSize();
+    static LinkList1 StrTransLink(int * s,int n);
     LinkList1 Merge(const LinkList1 & list);
 private:
 
@@ -38,6 +39,7 @@ private:
     void FastSort(Node *start,Node *end);
     Node * Reserve2(Node *node);
     Node * Reserve3(Node *node);
+    int GetLinkSize(Node * head);
     Node * head; //头指针
     size_t size; //节点个数
 };

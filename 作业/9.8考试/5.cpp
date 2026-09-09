@@ -8,7 +8,8 @@ int main()
         l.InsertTail(i+1);
     }
     
-    std::cout << l.FindSq()<<std::endl;
-    return 0;
-
+    // std::cout << l.FindSq()<<std::endl;
+    // return 0;
+    l.show();
+    l.GetLinkSize();
 }

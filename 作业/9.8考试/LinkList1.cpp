@@ -243,6 +243,19 @@ LinkList1:: Node *LinkList1::Reserve3(Node * node)
     }
     return newhead;
 }
+
+int LinkList1::GetLinkSize(Node *head)
+{
+    Node * travelPoint = head;
+    int count =0;
+    while(travelPoint != nullptr)
+    {
+        count++;
+        travelPoint= travelPoint->next;
+    }
+    return count;
+}
+
 void LinkList1::Reserve3()
 {
     if (head == nullptr || head->next == nullptr) return;
@@ -276,4 +289,24 @@ bool LinkList1::FindSq()
             return true;
     }
     return false;
+}
+
+int LinkList1::GetLinkSize()
+{
+    return GetLinkSize(head);
+}
+
+LinkList1 LinkList1::StrTransLink(int * s,int n)
+{
+    LinkList1 res;
+    if (res.head == nullptr)
+        res.head = new Node(0);
+    res.head->next = nullptr;
+    for(int i = n - 1;i >= 0;i--)
+    {
+        Node * newNode = new Node(s[i]);
+        newNode->next = res.head->next;
+        res.head->next = newNode;
+    }
+    return res;
 }
