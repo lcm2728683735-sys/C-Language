@@ -10,7 +10,12 @@ public:
     void InsertTail(const T &element);
 
     void RemoveByIndex(int index);
-    T & GetHead(){return head->next->data;}
+    T & GetHead()
+    {
+        if(size == 0)
+            throw std::out_of_range("链表为空，无法取出头部元素");
+        return head->next->data;
+    }
     int Size(){return size;}
     template <typename U>
     friend std::ostream & operator<<(std::ostream & os,const DoubleLinkList<U>& list);

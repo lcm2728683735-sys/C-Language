@@ -22,9 +22,15 @@ private:
 
 int main()
 {
+    // std::shared_ptr<Test> p = std::make_shared<Test>();
+    // p->show();
+    // std::cout << p.use_count() << std::endl;
+    // std::shared_ptr<Test> 
+    // p1=nullptr;
+    // std::cout << p.use_count() << std::endl;
+
     std::shared_ptr<Test> p = std::make_shared<Test>();
-    p->show();
-    std::cout << p.use_count << 
-    std::shared_ptr<Test> p1=p;
+    p = std::make_shared<Test>();
+    // while(1);
     return 0;
 }

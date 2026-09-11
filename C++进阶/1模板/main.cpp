@@ -18,17 +18,21 @@
 
 int main()
 {
-    LinkQueue<int> q;
-    for(int i =0;i < 10; i++)
-    {
-        q. Push(i+1);
-    }
-    return 0;
+    // LinkQueue<int> q;
+    // for(int i =0;i < 10; i++)
+    // {
+    //     q. Push(i+1);
+    // }
+    // return 0;
 
-    while(q.IsEmpty() == false)
-    {
-        std::cout << q.GetFront() << " ";
-        q.Pop();
-    }
+    // while(q.IsEmpty() == false)
+    // {
+    //     std::cout << q.GetFront() << " ";
+    //     q.Pop();
+    // }
+    // return 0;
+
+    DoubleLinkList<int> l;
+    int a = l.GetHead();
     return 0;
 }
