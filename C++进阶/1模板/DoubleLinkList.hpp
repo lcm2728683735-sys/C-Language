@@ -1,12 +1,19 @@
 #ifndef __DOUBLELINKLIST_H__
 #define __DOUBLELINKLIST_H__
 #include <iostream>
-
+#include <initializer_list>
 template <typename T>
 class DoubleLinkList
 {
 public:
     DoubleLinkList();
+    DoubleLinkList(const std::initializer_list<T>& list)
+    {
+        for(auto &value :list)// 基于范围的for循环  brf
+        {
+            InsertTail(value);
+        }
+    }
     void InsertTail(const T &element);
 
     void RemoveByIndex(int index);
