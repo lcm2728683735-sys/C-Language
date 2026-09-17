@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include "book.h"
+#include "book.h"
 
 // #define NameSize 24
 // #define PhoneNumberSize 12
@@ -168,3 +169,4 @@ bool ChangeBook(Book *a, char *name, char *number)
     return false;
    
 }
+

@@ -33,5 +33,6 @@ bool DeleteByNumber(Book* a, const char* number);
 void SearchFuzzy(const Book* a, const char* keyword);
 void SearchNameByNumber(const Book *a,char *number);
 void SearchNumberByName(const Book *a,char *name);
-bool ChangeBook(Book *a,char *name,char *number);
+bool ChangeBook(Book *a,char *name,char *number); 
+
 #endif

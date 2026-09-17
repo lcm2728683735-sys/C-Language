@@ -1,0 +1,11 @@
+内存：掉电数据不保存
+外存：掉电数据保存
+
+文件：储存在外部介质上的一组相关的有序数据的集合
+
+文本文件   ：字符编码的文件（ascii GBK unicode:UTF-8）
+二进制文件 : 基于值编码的文件（jpg mp3 mp4）
+
+#define SEEK_SET	0	/* Seek from beginning of file.  */
+#define SEEK_CUR	1	/* Seek from current position.  */
+#define SEEK_END	2	/* Seek from end of file.  */

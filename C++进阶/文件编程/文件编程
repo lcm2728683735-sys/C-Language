@@ -1,0 +1,95 @@
+内存：掉电数据不保存
+外存：掉电数据保存
+
+文件：储存在外部介质上的一组相关的有序数据的集合
+
+文本文件   ：字符编码的文件（ascii GBK unicode:UTF-8）
+二进制文件 : 基于值编码的文件（jpg mp3 mp4）
+
+#define SEEK_SET	0	/* Seek from beginning of file.  */
+#define SEEK_CUR	1	/* Seek from current position.  */
+#define SEEK_END	2	/* Seek from end of file.  */
+**对应C++**
+std::ios::beg
+std::ios::cur
+std::ios::end
+
+| 内容         | 作用               |          典型写法           |
+| ----------   | ----------        | -----------------------------|
+| `FILE`       | 文件对象类型       | `FILE *fp;`                  |
+| `fopen()`    | 打开文件           | `fopen("a.txt", "r")`         |
+| `fclose()`   | 关闭文件           | `fclose(fp)`                  |
+| `NULL`       | 判断文件是否打开失败 | `if(fp == NULL)`           |
+| `EOF`        | 文件结束标志        | `while((c=fgetc(fp)) != EOF)` |
+
+`C文件编程核心`
+FILE* + fopen() + 读写函数 + fclose()
+
+格式化输出输入
+fprintf
+fscanf
+
+缓冲区：预先把硬盘内容写入内存，提高io效率
+行缓冲：输出在遇到\n时将缓冲区的内容输出
+全缓冲：缓冲区满才输出
+linux默认缓冲区大小：1024字节
+
+
+输出缓冲区的方法：
+1.\n
+2.程序结束自动输出
+3.fflush
+
+输入缓冲区
+
+
+C:
+| 分类     | 关键 API     |
+| -----    | ----------- |
+| 文件类型  | `FILE*`     |
+| 打开      | `fopen()`   |
+| 关闭      | `fclose()`  |
+| 字符读取  | `fgetc()`   |
+| 字符写入  | `fputc()`   |
+| 字符串读取 | `fgets()`   |
+| 字符串写入 | `fputs()`   |
+| 格式化读取 | `fscanf()`  |
+| 格式化写入 | `fprintf()` |
+| 二进制读取 | `fread()`   |
+| 二进制写入 | `fwrite()`  |
+| 移动位置  | `fseek()`   |
+| 获取位置  | `ftell()`   |
+| 回到开头  | `rewind()`  |
+| EOF     | `feof()`    |
+| 错误    | `ferror()`  |
+| 刷新    | `fflush()`  |
+
+
+
+C++:
+| 分类    | 关键 API               |
+| ----- | -------------------- |
+| 头文件   | `<fstream>`          |
+| 读文件   | `ifstream`           |
+| 写文件   | `ofstream`           |
+| 读写文件  | `fstream`            |
+| 打开    | `open()`             |
+| 关闭    | `close()`            |
+| 格式化读取 | `>>`                 |
+| 格式化写入 | `<<`                 |
+| 按行读取  | `getline()`          |
+| 二进制读取 | `read()`             |
+| 二进制写入 | `write()`            |
+| 读位置   | `tellg()`            |
+| 写位置   | `tellp()`            |
+| 设置读位置 | `seekg()`            |
+| 设置写位置 | `seekp()`            |
+| 正常状态  | `good()`             |
+| EOF   | `eof()`              |
+| 操作失败  | `fail()`             |
+| 严重错误  | `bad()`              |
+| 文件系统  | `<filesystem>`       |
+| 路径    | `filesystem::path`   |
+| 判断存在  | `exists()`           |
+| 文件大小  | `file_size()`        |
+| 遍历目录  | `directory_iterator` |
