@@ -32,14 +32,13 @@ std::vector<std::string> FileTools::ReadLine(const std::string& filePath)
         std::cout << filePath << "文件打开失败!\n";
         return {}; 
     }
+
     std::vector<std::string> vec;
     std::string lineData;
+
     while(std::getline(f,lineData))
     {
-        std::string LineData;
-        std::getline(f,LineData);
-        if(LineData != "")
-            vec.push_back(std::move(LineData));
+        vec.push_back(std::move(lineData));
     }
     f.close();
     return vec;
