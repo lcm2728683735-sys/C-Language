@@ -7,7 +7,8 @@ class Player : public VirObj
 public:
     Player(CStrRef);
     void Move();
-    void SetMaxSize(int Max);
+    DEFINE_MEMEBER(MaxWidth,int);
+    DEFINE_MEMEBER(MaxHeight,int);
 };
 
 

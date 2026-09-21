@@ -23,15 +23,18 @@ void Player::Move()
     break;
     case 's':
         down();
-    break;
+        if(Gety() >= MaxWidth)
+            Sety(MaxHeight-1);
+        break;
     case 'a':
         left();
     break;
     case 'd':
         right();
+        if(Getx() >= MaxWidth)
+            Setx(MaxWidth-1);
     break;
     default:
         break;
     }
-
 }

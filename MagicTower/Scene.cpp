@@ -11,7 +11,10 @@ Scene::Scene(int width,int height,Player &p):player(p),width(width),height(heigh
             Map[i].push_back("🤣");
         }
     }
+    p.SetMaxWidth(width);
+    p.SetMaxHeight(height);
 }
+
 
 void Scene::show()
 {
