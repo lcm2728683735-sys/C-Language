@@ -4,9 +4,16 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
- //##连接字符串
-#define DEFINE_MEMEBER(name, type) private:type name; public: void Set##name(type name){this->name = name;} type Get##name(){return this->name;}
+#include <ctime>
+#include <algorithm>
+#include <unistd.h>   //sleep
+#include <memory>
+#include <limits>
+//##连接字符串
+#define DEFINE_MEMEBER(name, type) private:type name; public: void Set##name(type name){this->name = name;} type Get##name()const{return this->name;}
 
 using CStrRef = const std::string &;
+
+#define WIDTH 16
+#define HEIGHT 10
 #endif
