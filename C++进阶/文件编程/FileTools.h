@@ -40,6 +40,10 @@ public:
         }
         return AppendLine(filePath,v);
     }
+    //创建文件夹
+    static void MakeDir(const std::string &path);
+    //删除文件夹
+    static void RemoveDir(const std::string &path);
 };
     
 

@@ -103,3 +103,16 @@ bool FileTools::AppendLine(const std::string &filePath, std::vector<std::string>
     f.close();
     return true;
 }
+
+
+void FileTools::MakeDir(const std::string &path)
+{
+    std::string cmd = "makdir" + path;
+    system(cmd.c_str());
+}
+
+void FileTools::RemoveDir(const std::string &path)
+{
+    std::string cmd = "rm -rf" + path;
+    system(cmd.c_str());
+}
