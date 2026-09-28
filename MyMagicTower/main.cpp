@@ -1,55 +1,32 @@
 #include "Global.h"
 #include "ECS/Component.h"
-
-
-
-struct Health
-{
-    int hp;
-    int maxHp;
-};
-
-struct PlayerStats
-{
-    int attack;
-    int defense;
-    int gold;
-};
-
+#include "ECS/World.h"
+#include "ECS/Entity.h"
+#include "System/MovementSystem.h"
 
 int main()
 {
-    ComponentManager manager;
+    World world;
 
-    Entity player = 1;
+    Entity player = world.CreateEntity();
 
-    manager.AddComponent<Position>(player,{5, 10}); //等价于Position & AddComponent 
+    world.AddComponent<Position>(
+        player,
+        {5, 5}
+    );
 
-    manager.AddComponent<Health>(player,{100, 100}); 
+    world.AddComponent<Velocity>(
+        player,
+        {1, 0}
+    );
 
-    manager.AddComponent<PlayerStats>(player,{20, 10, 50});
+    MovementSystem movementSystem;
 
+    movementSystem.Update(world, player);
 
-    auto& position =manager.GetComponent<Position>(player);
+    auto& position =
+        world.GetComponent<Position>(player);
 
-    auto& health =manager.GetComponent<Health>(player);
-
-    auto& stats =manager.GetComponent<PlayerStats>(player);
-
-
-    std::cout << "Position: "
-              << position.x << ", "
+    std::cout << position.x << " "
               << position.y << '\n';
-
-    std::cout << "HP: "
-              << health.hp << '\n';
-
-    std::cout << "Attack: "
-              << stats.attack << '\n';
-
-    std::cout << "Gold: "
-              << stats.gold << '\n';
-
-
-    return 0;
 }

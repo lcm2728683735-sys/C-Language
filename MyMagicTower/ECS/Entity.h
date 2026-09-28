@@ -4,6 +4,20 @@
 
 using Entity = std::uint32_t;
 
-Entity player  = 1;
-Entity monster = 2;
-Entity bag = 3;
+class EntityManager
+{
+//生成Entity,优先使用已经销毁的Entity
+public:
+    Entity CreateEntity();
+
+    void DestroyEntity(Entity entity);
+
+    bool IsValid(Entity entity);
+
+private:
+    Entity nextentity = 1;
+    //存放已经销毁的Entity
+    std::queue<Entity> freeEntities;
+    //存放还存活的entity
+    std::unordered_set<Entity> aliveEntities;
+};

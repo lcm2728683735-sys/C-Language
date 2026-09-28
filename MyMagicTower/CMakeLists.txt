@@ -1,0 +1,1 @@
+g++ main.cpp System/MovementSystem.cpp ECS/World.cpp ECS/Entity.cpp -o 1
