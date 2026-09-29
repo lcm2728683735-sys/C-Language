@@ -5,9 +5,8 @@
 #include "../ECS/World.h"
 #include "../Game/Factory.h"
 
-
-class MovementSystem : public ISystem
+class MonsterSystem : public ISystem
 {
-    public:
-    void Update(World& world) override;
+public:
+    Entity CreateSlime(World& world, Position position);
 };

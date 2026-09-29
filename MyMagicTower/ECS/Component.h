@@ -116,44 +116,7 @@ private:
 
 
 
-struct Position  {
-    int x;
-    int y;
-};
 
-struct Velocity{
-    int dx;
-    int dy;
-};
-
-struct Health{
-    int hp;
-};
-
-struct CombatStats{
-    int attack;
-    int defend;
-};
-
-
-struct PlayerStats{
-    std::string name;
-    int level;
-    int exp;
-    int attrpoint;
-};
-
-struct Money{
-    int golden;
-};
-
-struct Symbol{
-    std::string value;
-};
-
-struct PlayerSaveData{
-    int x;int y;
-};
 
 
 

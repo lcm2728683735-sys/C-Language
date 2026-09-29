@@ -5,32 +5,78 @@
 #include "System/MovementSystem.h"
 #include "System/SystemManager.h"
 
+#include <iostream>
+#include <unistd.h>
+
+#include "ECS/World.h"
+
+#include "Components/Position.h"
+#include "Components/Velocity.h"
+
+#include "Game/Factory.h"
+
+#include "System/RenderSystem.h"
+
+
+#define WIDTH 16
+#define HEIGHT 10
+
+
 int main()
 {
     World world;
 
-    Entity player = world.CreateEntity();
 
-    world.AddComponent<Position>(
-        player,
-        {5, 5}
+    // =========================
+    // 创建玩家
+    // =========================
+
+    Entity player =
+        CreatePlayer(
+            world,
+            "张三",
+            WIDTH,
+            HEIGHT
+        );
+
+
+    // =========================
+    // 创建商店
+    // =========================
+
+    Entity shop =
+        CreateShop(
+            world,
+            {
+                WIDTH / 2,
+                HEIGHT / 2
+            }
+        );
+
+
+    // =========================
+    // 创建怪物
+    // =========================
+
+    CreateSlime(world, {3, 2});
+    CreateSlime(world, {5, 7});
+    CreateSlime(world, {8, 3});
+    CreateSlime(world, {12, 6});
+    CreateSlime(world, {14, 1});
+
+
+    RenderSystem renderSystem(
+        WIDTH,
+        HEIGHT
     );
 
-    world.AddComponent<Velocity>(
-        player,
-        {1, 0}
-    );
+
+    // =========================
+    // 测试显示
+    // =========================
+
+    renderSystem.Update(world);
 
 
-    SystemManager systems;
-
-    systems.AddSystem<MovementSystem>();
-
-    systems.Update(world);
-
-
-    auto& position =
-        world.GetComponent<Position>(player);
-
-    std::cout<< position.x << " "<< position.y <<std::endl;
+    return 0;
 }

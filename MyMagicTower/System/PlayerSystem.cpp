@@ -10,7 +10,7 @@ void PlayerSystem::Update(World &world)
         {
             player.exp -= 100;
             player.level++;
-            player.attrpoint += 5;
+            player.attrPoint += 5;
 
             std:: cout<<"=======================" << 
             "恭喜升级!升级到:" << player.level << "级!" 
@@ -27,8 +27,9 @@ void PlayerSystem::ShowPlayer(World &world, Entity player)
     auto & health = world.GetComponent<Health>(player);
     auto & combat = world.GetComponent<CombatStats>(player);
     auto & money = world.GetComponent<Money>(player);
+    auto & id = world.GetComponent<Identity>(player);
     std:: cout<<"=========================================="<< std::endl;
-    std::cout << "玩家姓名：|" << stats.name << "|" << std::endl;
+    std::cout << "玩家姓名：|" << id.name << "|" << std::endl;
     std::cout << "生命  ❤️：|" << health.hp<< "|" << std::endl;
     std::cout << "攻击力🔪:|" << combat.attack << "|" << std::endl;
     std::cout << "防御力🛡️:|" << combat.defend << "|" << std::endl;
@@ -38,3 +39,60 @@ void PlayerSystem::ShowPlayer(World &world, Entity player)
     std:: cout<<"=========================================="<< std::endl;
 }
 
+Entity PlayerSystem::CreatePlayer(World world, const std::string &name)
+{
+    Entity player = world.CreateEntity();
+
+    world.AddComponent<Position>(
+        player,
+        Position{0, 0}
+    );
+
+    world.AddComponent<Velocity>(
+        player,
+        Velocity{0, 0}
+    );
+
+    world.AddComponent<Identity>(
+        player,
+        Identity{name}
+    );
+
+    world.AddComponent<Symbol>(
+        player,
+        Symbol{"🤣"}
+    );
+
+    world.AddComponent<Health>(
+        player,
+        Health{100}
+    );
+
+    world.AddComponent<CombatStats>(
+        player,
+        CombatStats{
+            10,  // attack
+            1,   // defend
+            0,   // criticalHit
+            0    // agile
+        }
+    );
+
+    world.AddComponent<PlayerStats>(
+        player,
+        PlayerStats{
+            1,      // level
+            0,      // exp
+            0,      // attrPoint
+            16,     // maxWidth
+            10      // maxHeight
+        }
+    );
+
+    world.AddComponent<Money>(
+        player,
+        Money{0}
+    );
+
+    return player;
+}

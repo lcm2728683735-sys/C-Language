@@ -5,9 +5,8 @@
 #include "../ECS/World.h"
 #include "../Game/Factory.h"
 
-
-class MovementSystem : public ISystem
+struct ShopData
 {
-    public:
-    void Update(World& world) override;
+    Entity CreateShop(World& world, Position position);
 };
+

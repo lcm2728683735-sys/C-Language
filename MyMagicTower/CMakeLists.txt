@@ -1,1 +1,5 @@
-g++ main.cpp System/MovementSystem.cpp ECS/World.cpp ECS/Entity.cpp -o 1
+g++ main.cpp \
+    ECS/*.cpp \
+    System/*.cpp \
+    Game/*.cpp \
+    -o 1
