@@ -1,0 +1,3 @@
+/home/lvguanzhong/code/MyMagicTower/build/CMakeFiles/MyMagicTower.dir
+/home/lvguanzhong/code/MyMagicTower/build/CMakeFiles/edit_cache.dir
+/home/lvguanzhong/code/MyMagicTower/build/CMakeFiles/rebuild_cache.dir

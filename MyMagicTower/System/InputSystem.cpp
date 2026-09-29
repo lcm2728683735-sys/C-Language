@@ -1,40 +1,37 @@
 #include "InputSystem.h"
 
-void InputSystem::Update(World &world)
+void InputSystem::Update(World &world, Entity player)
 {
-        char choice;
+    char choice;
 
-        std::cin >> choice;
+    std::cout << "请输入操作(w/a/s/d):";
+    std::cin >> choice;
 
-        world.Each<Velocity>([choice](Entity entity, Velocity& velocity)
-        {
-            switch (choice)
-                {
-                case 'w':
-                    velocity.dx = 0;
-                    velocity.dy = -1;
-                    break;
+    auto &velocity =
+        world.GetComponent<Velocity>(player);
 
-                case 's':
-                    velocity.dx = 0;
-                    velocity.dy = 1;
-                    break;
+    velocity.dx = 0;
+    velocity.dy = 0;
 
-                case 'a':
-                    velocity.dx = -1;
-                    velocity.dy = 0;
-                    break;
+    switch (choice)
+    {
+    case 'w':
+        velocity.dy = -1;
+        break;
 
-                case 'd':
-                    velocity.dx = 1;
-                    velocity.dy = 0;
-                    break;
+    case 's':
+        velocity.dy = 1;
+        break;
 
-                default:
-                    velocity.dx = 0;
-                    velocity.dy = 0;
-                    break;
-                }
-            }
-        );
+    case 'a':
+        velocity.dx = -1;
+        break;
+
+    case 'd':
+        velocity.dx = 1;
+        break;
+
+    default:
+        break;
     }
+}

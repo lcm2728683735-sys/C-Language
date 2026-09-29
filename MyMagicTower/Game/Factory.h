@@ -3,21 +3,11 @@
 
 #include "../ECS/World.h"
 
-#include "../Components/Position.h"
-#include "../Components/Velocity.h"
-#include "../Components/Identity.h"
-#include "../Components/Symbol.h"
-#include "../Components/Health.h"
-#include "../Components/CombatStats.h"
-#include "../Components/PlayerStats.h"
-#include "../Components/Money.h"
-#include "../Components/MonsterData.h"
-#include "../Components/ShopData.h"
 
 #include <string>
 
 
-Entity CreatePlayer(
+inline Entity CreatePlayer(
     World& world,
     const std::string& name,
     int maxWidth,
@@ -80,7 +70,7 @@ Entity CreatePlayer(
 }
 
 
-Entity CreateSlime(
+inline Entity CreateSlime(
     World& world,
     Position position)
 {
@@ -124,7 +114,7 @@ Entity CreateSlime(
 }
 
 
-Entity CreateShop(
+inline Entity CreateShop(
     World& world,
     Position position)
 {

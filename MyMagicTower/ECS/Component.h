@@ -113,6 +113,68 @@ private:
     >storages;
 };
 
+struct Identity
+{
+    std::string name;
+};
+
+
+struct Position
+{
+    int x = 0;
+    int y = 0;
+};
+
+struct Velocity
+{
+    int dx = 0;
+    int dy = 0;
+};
+
+struct Symbol
+{
+    std::string value;
+};
+
+struct Health
+{
+    int hp = 0;
+};
+
+struct PlayerStats
+{
+    int level = 1;
+    int exp = 0;
+    int attrPoint = 0;
+
+    int maxWidth = 0;
+    int maxHeight = 0;
+};
+
+struct Money
+{
+    int golden = 0;
+};
+
+struct CombatStats
+{
+    int attack = 0;
+    int defend = 0;
+    int criticalHit = 0;
+    int agile = 0;
+};
+
+struct MonsterData
+{
+    std::string name;
+    int exp = 0;
+    int golden = 0;
+};
+
+struct ShopData
+{
+};
+
 
 
 

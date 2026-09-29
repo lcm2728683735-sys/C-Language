@@ -8,5 +8,6 @@
 class MonsterSystem : public ISystem
 {
 public:
+
     Entity CreateSlime(World& world, Position position);
 };

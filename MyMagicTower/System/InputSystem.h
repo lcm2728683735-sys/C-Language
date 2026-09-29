@@ -4,8 +4,9 @@
 #include "../Global.h"
 #include "../ECS/World.h"
 
-class InputSystem : public ISystem
+class InputSystem
 {
 public:
-    void Update(World & world) override;
+    void Update(World& world, Entity player);
+
 };
