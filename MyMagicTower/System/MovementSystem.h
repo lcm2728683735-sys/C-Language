@@ -1,16 +1,11 @@
 #pragma once
 
+#include "System.h"
 #include "../Global.h"
 #include "../ECS/World.h"
 
-class MovementSystem
+class MovementSystem : public ISystem
 {
-public:
-    void Update(World& world,Entity entity);
-    // void Move(Velocity & velocity);
-    // void up(Velocity & velocity);
-    // void down(Velocity & velocity);
-    // void left(Velocity & velocity);
-    // void right(Velocity & velocity);
+    public:
+    void Update(World& world) override;
 };
-

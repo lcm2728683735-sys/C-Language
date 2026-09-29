@@ -4,8 +4,10 @@
 #include "../Global.h"
 #include "../ECS/World.h"
 
-class InputSystem : public ISystem
+
+class PlayerSystem : public ISystem
 {
 public:
     void Update(World & world) override;
+    void ShowPlayer(World & world ,Entity player);
 };

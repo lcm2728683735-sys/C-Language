@@ -1,38 +1,16 @@
 #include "MovementSystem.h"
 
-void MovementSystem::Update(World& world,Entity entity)
+void MovementSystem::Update(World &world)
 {
-    if(!world.HasComponent<Position>(entity))
-        return;
-    if(!world.HasComponent<Velocity>(entity))
-        return;
-
-    auto& position = world.GetComponent<Position>(entity);
-    auto& velocity = world.GetComponent<Velocity>(entity);
-
-    position.x += velocity.dx;
-    position.y += velocity.dy;
+    world.Each<Position,Velocity>
+    (
+        [](Entity entity,Position & position,Velocity & velocity)
+        {  
+        position.x += velocity.dx;
+        position.y += velocity.dy;
+        velocity.dx = 0;
+        velocity.dy = 0;
+        }
+    );
 }
 
-// void MovementSystem::Move(Velocity & velocity)
-// {
-//     char choice;
-//     std::cin >> choice;
-//     switch (choice)
-//     {
-//     case 'w':
-//         up(velocity);
-//         break;
-//     case 's':
-//         down(velocity);
-//         break;
-//     case 'a':
-//         left(velocity);
-//         break;
-//     case 'd':
-//         right(velocity);
-//         break;
-//     default:
-//         break;
-//     }
-// }

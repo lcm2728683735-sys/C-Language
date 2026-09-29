@@ -14,6 +14,8 @@ public:
 
     bool IsValid(Entity entity);
 
+    const std::unordered_set<Entity>& GetEntities(){return aliveEntities;}
+
 private:
     Entity nextentity = 1;
     //存放已经销毁的Entity

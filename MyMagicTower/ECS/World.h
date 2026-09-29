@@ -34,13 +34,31 @@ public:
     bool HasComponent(Entity entity)
     {
         return componentmanager.HasComponent<T>(entity);
-    }   
+    }
 
     template<typename T>
     void RemoveComponent(Entity entity)
     {
         componentmanager.RemoveComponent<T>(entity);
     }
+
+    template<typename... Components>
+    bool HasComponents(Entity entity)
+    {
+        return (HasComponent<Components>(entity)&& ...);
+    }
+
+    template<typename... Components,typename Func>
+    void Each(Func func)
+    {
+        for(Entity entity:entitymanager.GetEntities())
+        {
+            if(!HasComponents<Components...>(entity))
+                continue;
+            func(entity,GetComponent<Components>(entity)...);
+        }
+    }
+
 
 private:
     ComponentManager componentmanager;

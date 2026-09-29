@@ -3,6 +3,7 @@
 #include "ECS/World.h"
 #include "ECS/Entity.h"
 #include "System/MovementSystem.h"
+#include "System/SystemManager.h"
 
 int main()
 {
@@ -20,13 +21,16 @@ int main()
         {1, 0}
     );
 
-    MovementSystem movementSystem;
 
-    movementSystem.Update(world, player);
+    SystemManager systems;
+
+    systems.AddSystem<MovementSystem>();
+
+    systems.Update(world);
+
 
     auto& position =
         world.GetComponent<Position>(player);
 
-    std::cout << position.x << " "
-              << position.y << '\n';
+    std::cout<< position.x << " "<< position.y <<std::endl;
 }
