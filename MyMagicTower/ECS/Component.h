@@ -4,115 +4,163 @@
 #include "Entity.h"
 #include "../Game/Prop.h"
 
+
 class IComponentStorage
 {
 public:
-    //作为类型擦除的父类接口
     virtual ~IComponentStorage() = default;
-    //删除Entity的虚函数
+
     virtual void RemoveEntity(Entity entity) = 0;
 };
 
-//模板子类用来实现删除Entity
+
 template<typename T>
 class ComponentStorage : public IComponentStorage
 {
 public:
-    //一个Component对应一个容器
-    //即Entity-> T
+
     std::unordered_map<Entity, T> components;
 
     void RemoveEntity(Entity entity) override
     {
-        components.erase(entity);  
+        components.erase(entity);
     }
 };
 
 
+// ============================================================
+// Component Manager
+// ============================================================
 
 class ComponentManager
 {
 public:
+
+    // 添加 Component
     template<typename T>
-    void AddComponent(Entity entity, const T& component)
+    void AddComponent(
+        Entity entity,
+        const T& component)
     {
-        //生成T对应的类型id
         std::type_index type = typeid(T);
-        //查找类型id
+
         auto it = storages.find(type);
 
-        if(it == storages.end())
+        if (it == storages.end())
         {
-            //如果找不到，那么新建
-            auto storage = std::make_unique<ComponentStorage<T>>();
+            auto storage =
+                std::make_unique<ComponentStorage<T>>();
 
-            //ComponentStorage<T>就是std::unordered_map<Entity, T>
+            storage->components[entity] = component;
 
-            storage ->components[entity] = component;
-            storages[type] = std::move(storage);
+            storages[type] =
+                std::move(storage);
+
             return;
         }
-        auto *storage = static_cast<ComponentStorage<T>*>(it->second.get());
-        storage->components[entity] = component;
+
+        auto* storage =
+            static_cast<ComponentStorage<T>*>(
+                it->second.get()
+            );
+
+        storage->components[entity] =
+            component;
     }
 
+
+    // 获取 Component
     template<typename T>
     T& GetComponent(Entity entity)
     {
         std::type_index type = typeid(T);
+
         auto it = storages.find(type);
 
-        if(it == storages.end())
+        if (it == storages.end())
         {
-            //运行时间超时
-            throw std::runtime_error("Component not found");
+            throw std::runtime_error(
+                "Component storage not found"
+            );
         }
-        auto *storage = static_cast<ComponentStorage<T>*>(it->second.get());
+
+        auto* storage =
+            static_cast<ComponentStorage<T>*>(
+                it->second.get()
+            );
+
         return storage->components.at(entity);
     }
 
+
+    // 判断 Entity 是否拥有 Component
     template<typename T>
     bool HasComponent(Entity entity)
     {
         std::type_index type = typeid(T);
+
         auto it = storages.find(type);
-        if(it == storages.end())
+
+        if (it == storages.end())
         {
             return false;
         }
-        auto *storage = static_cast<ComponentStorage<T>*>(it->second.get());
-        return storage->components.find(entity)!= storage->components.end();
+
+        auto* storage =
+            static_cast<ComponentStorage<T>*>(
+                it->second.get()
+            );
+
+        return
+            storage->components.find(entity)
+            != storage->components.end();
     }
 
+
+    // 删除 Component
     template<typename T>
     void RemoveComponent(Entity entity)
     {
         std::type_index type = typeid(T);
+
         auto it = storages.find(type);
-        if(it == storages.end())
+
+        if (it == storages.end())
         {
-            throw;
+            return;
         }
-        auto *storage = static_cast<ComponentStorage<T>*>(it->second.get());
+
+        auto* storage =
+            static_cast<ComponentStorage<T>*>(
+                it->second.get()
+            );
+
         storage->components.erase(entity);
     }
 
+
+    // 删除 Entity 的所有 Component
     void RemoveAllComponent(Entity entity)
     {
-        for(auto & [type,storage] : storages)
+        for (auto& [type, storage] : storages)
         {
             storage->RemoveEntity(entity);
         }
     }
-private:    
-    //核心容器 :通过T的类型找到对应储存器
-    //storages->由模板生成的类型T的typeid-> T 的储存空间
+
+
+private:
+
     std::unordered_map<
-    std::type_index,  //类型id
-    //把不同容器的类型变成一个统一的IComponentStorage*，std::unique_ptr用于父类析构时自动销毁
-    std::unique_ptr<IComponentStorage>
-    >storages;
+        std::type_index,
+        std::unique_ptr<IComponentStorage>
+    > storages;
 };
+
+
+// ============================================================
+// Game Components
+// ============================================================
 
 struct Identity
 {
@@ -126,22 +174,27 @@ struct Position
     int y = 0;
 };
 
+
 struct Velocity
 {
     int dx = 0;
     int dy = 0;
 };
 
+
 struct Symbol
 {
     std::string value;
 };
+
 
 struct Health
 {
     int hp = 0;
 };
 
+
+// 玩家等级相关数据
 struct PlayerStats
 {
     int level = 1;
@@ -149,11 +202,15 @@ struct PlayerStats
     int attrPoint = 0;
 };
 
+
+// 金钱
 struct Money
 {
     int golden = 100;
 };
 
+
+// 战斗属性
 struct CombatStats
 {
     int attack = 0;
@@ -162,43 +219,69 @@ struct CombatStats
     int agile = 0;
 };
 
+
+// 怪物专属数据
 struct MonsterData
 {
     std::string name;
+
     int exp = 0;
+
     int golden = 0;
 };
 
+
+// 玩家背包
 struct Inventory
 {
     std::vector<PropPtr> items;
 };
 
+
+// 商店
 struct ShopData
 {
     std::vector<PropPtr> props;
 
     ShopData()
     {
-        props.push_back(std::make_shared<Weapon>("饮血剑", 10, 10));
+        props.push_back(
+            std::make_shared<Weapon>(
+                "饮血剑",
+                10,
+                10
+            )
+        );
 
-        props.push_back(std::make_shared<Weapon>("无尽之刃", 20, 20));
+        props.push_back(
+            std::make_shared<Weapon>(
+                "无尽之刃",
+                20,
+                20
+            )
+        );
 
-        props.push_back(std::make_shared<Weapon>("BKB", 30, 30));
+        props.push_back(
+            std::make_shared<Weapon>(
+                "BKB",
+                30,
+                30
+            )
+        );
 
-        props.push_back(std::make_shared<Weapon>("跳刀", 40, 40)
+        props.push_back(
+            std::make_shared<Weapon>(
+                "跳刀",
+                40,
+                40
+            )
         );
     }
 };
 
+
+// 当前装备
 struct Equipment
 {
     PropPtr weapon = nullptr;
 };
-
-
-
-
-
-
-

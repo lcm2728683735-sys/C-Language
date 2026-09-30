@@ -1,36 +1,37 @@
 #pragma once
 
-#include "../ECS/World.h"
-#include "../Game/Prop.h"
+#include "System.h"
 #include "../Global.h"
+#include "../ECS/World.h"
 
-class SaveSystem
+
+class InputSystem
 {
+private:
+    bool openAttribute = false;
+    bool openBag = false;
+    bool quit = false;
+
+
 public:
 
-    // 保存玩家游戏数据
-    bool Save(
+    void Update(
         World& world,
-        Entity player,
-        const std::string& username
-    );
+        Entity player);
 
-    // 加载玩家游戏数据
-    bool Load(
-        World& world,
-        Entity player,
-        const std::string& username
-    );
 
-    // 判断玩家是否存在存档
-    bool Exists(
-        const std::string& username
-    ) const;
+    bool IsAttributeRequested() const
+    {
+        return openAttribute;
+    }
 
-private:
+    bool IsBagRequested() const
+    {
+        return openBag;
+    }
 
-    // 获取存档路径
-    std::string GetSavePath(
-        const std::string& username
-    ) const;
+    bool IsQuitRequested() const
+    {
+        return quit;
+    }
 };
