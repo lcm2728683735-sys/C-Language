@@ -15,6 +15,8 @@ add_executable(MyMagicTower
     System/MovementSystem.cpp
     System/InputSystem.cpp
     System/PlayerSystem.cpp
+    System/CollisionSystem.cpp
+    System/UserSystem.cpp
     # ... 其他 .cpp
 )
 

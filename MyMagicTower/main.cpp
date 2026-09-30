@@ -2,99 +2,74 @@
 
 #include "ECS/World.h"
 
+#include "Game/Factory.h"
+
 #include "System/RenderSystem.h"
+#include "System/InputSystem.h"
 #include "System/MovementSystem.h"
 #include "System/CollisionSystem.h"
 #include "System/CombatSystem.h"
 #include "System/ShopSystem.h"
-
+#include "System/AttributeSystem.h"
+#include "System/EquipmentSystem.h"
 
 int main()
 {
+
     World world;
 
-
-    // =========================================
-    // 创建玩家
-    // =========================================
-
     Entity player =
-        world.CreateEntity();
-
-
-    world.AddComponent<Position>(
-        player,
-        Position{0, 0}
-    );
-
-
-    world.AddComponent<Symbol>(
-        player,
-        Symbol{"🤣"}
-    );
-
-
-    world.AddComponent<Health>(
-        player,
-        Health{100}
-    );
-
-
-    world.AddComponent<PlayerStats>(
-        player,
-        PlayerStats{}
-    );
-
-
-    world.AddComponent<Inventory>(
-        player,
-        Inventory{}
-    );
-
-
-    // =========================================
-    // 创建商店
-    // =========================================
+        CreatePlayer(
+            world,
+            "张三",
+            WIDTH,
+            HEIGHT);
 
     Entity shop =
-        world.CreateEntity();
+        CreateShop(
+            world,
+            {WIDTH / 2,
+             HEIGHT / 2});
 
+    CreateSlime(
+        world,
+        {3, 2});
 
-    world.AddComponent<Position>(
-        shop,
-        Position{
-            WIDTH / 2,
-            HEIGHT / 2
-        }
-    );
+    CreateSlime(
+        world,
+        {5, 3});
 
+    CreateSlime(
+        world,
+        {7, 2});
 
-    world.AddComponent<Symbol>(
-        shop,
-        Symbol{"🛒"}
-    );
+    CreateSlime(
+        world,
+        {10, 7});
 
+    CreateSlime(
+        world,
+        {13, 4});
 
-    world.AddComponent<ShopData>(
-        shop,
-        ShopData{}
-    );
+    RenderSystem renderSystem(
+        WIDTH,
+        HEIGHT);
 
+    InputSystem inputSystem;
 
-    // =========================================
-    // 创建系统
-    // =========================================
-
-    RenderSystem renderSystem(WIDTH,HEIGHT);
-
-    MovementSystem movementSystem(WIDTH, HEIGHT);
+    MovementSystem movementSystem(
+        WIDTH,
+        HEIGHT);
 
     CollisionSystem collisionSystem;
+
+    EquipmentSystem equipmentSystem;
 
     CombatSystem combatSystem;
 
     ShopSystem shopSystem;
 
+    AttributeSystem attributeSystem;
 
     // =========================================
     // 游戏循环
@@ -104,41 +79,82 @@ int main()
     {
         system("clear");
 
-
+        // =============================
         // 地图
+        // =============================
+
         renderSystem.Update(world);
 
+        // =============================
+        // 输入
+        // =============================
 
-        // 玩家移动
-        movementSystem.Update(
-            world
-        );
-
-        // 商店
-        shopSystem.Update(
+        inputSystem.Update(
             world,
-            player
-        );
+            player);
 
+        // =============================
+        // 属性
+        // =============================
 
-        // 战斗
-        Entity monster =
-            collisionSystem.CheckMonsterCollision(
+        if (inputSystem.IsAttributeRequested())
+        {
+            attributeSystem.Update(
+                world,
+                player);
+
+            continue;
+        }
+
+        // =============================
+        // 背包
+        // =============================
+
+        if (inputSystem.IsBagRequested())
+        {
+            equipmentSystem.Update(
                 world,
                 player
             );
+            continue;
+        }
 
+        // =============================
+        // 移动
+        // =============================
+
+        movementSystem.Update(
+            world);
+
+        // =============================
+        // 商店
+        // =============================
+
+        shopSystem.Update(
+            world,
+            player);
+
+        // =============================
+        // 怪物碰撞
+        // =============================
+
+        Entity monster =
+            collisionSystem.CheckMonsterCollision(
+                world,
+                player);
+
+        // =============================
+        // 战斗
+        // =============================
 
         if (monster != INVALID_ENTITY)
         {
             combatSystem.Battle(
                 world,
                 player,
-                monster
-            );
+                monster);
         }
     }
-
 
     return 0;
 }

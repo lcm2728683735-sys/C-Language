@@ -195,6 +195,11 @@ struct ShopData
     }
 };
 
+struct Equipment
+{
+    PropPtr weapon = nullptr;
+};
+
 
 
 

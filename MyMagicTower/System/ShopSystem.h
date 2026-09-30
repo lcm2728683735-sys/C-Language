@@ -3,37 +3,30 @@
 #include "System.h"
 #include "../Global.h"
 #include "../ECS/World.h"
-#include "../Game/Factory.h"
 #include "../Game/Prop.h"
-
-
 
 class ShopSystem
 {
+private:
+    // 防止退出商店后下一帧立即重新进入
+    bool inShop = false;
+
 public:
 
     void Update(
         World& world,
         Entity player)
     {
-        // 玩家无效
         if (player == INVALID_ENTITY)
             return;
 
-        // 玩家没有位置
         if (!world.HasComponent<Position>(player))
             return;
 
         Position& playerPosition =
             world.GetComponent<Position>(player);
 
-
-        // 找商店
-        world.Each<
-            Position,
-            Symbol,
-            ShopData
-        >(
+        world.Each<Position, Symbol, ShopData>(
             [&](Entity shop,
                 Position& shopPosition,
                 Symbol& symbol,
@@ -43,8 +36,17 @@ public:
                 if (playerPosition.x != shopPosition.x ||
                     playerPosition.y != shopPosition.y)
                 {
+                    inShop = false;
                     return;
                 }
+
+
+                // 已经处理过这个商店
+                if (inShop)
+                    return;
+
+
+                inShop = true;
 
 
                 OpenShop(
@@ -52,6 +54,10 @@ public:
                     player,
                     shopData
                 );
+
+
+                // 退出商店
+                inShop = false;
             }
         );
     }
@@ -67,8 +73,9 @@ private:
         Inventory& inventory =
             world.GetComponent<Inventory>(player);
 
-        PlayerStats& stats =
-            world.GetComponent<PlayerStats>(player);
+
+        Money& money =
+            world.GetComponent<Money>(player);
 
 
         while (true)
@@ -80,9 +87,9 @@ private:
                 << "================== 欢迎来到商店 ==================\n\n";
 
 
-            // ==============================
-            // 显示商品
-            // ==============================
+            // ============================
+            // 商品
+            // ============================
 
             for (size_t i = 0;
                  i < shopData.props.size();
@@ -96,9 +103,9 @@ private:
             }
 
 
-            // ==============================
+            // ============================
             // 退出
-            // ==============================
+            // ============================
 
             std::cout
                 << shopData.props.size() + 1
@@ -106,8 +113,8 @@ private:
 
 
             std::cout
-                << "\n当前金币:"
-                << stats.golden
+                << "\n当前金币："
+                << money.golden
                 << "\n";
 
 
@@ -140,9 +147,9 @@ private:
             }
 
 
-            // ==============================
-            // 退出商店
-            // ==============================
+            // ============================
+            // 退出
+            // ============================
 
             if (choice ==
                 static_cast<int>(shopData.props.size()) + 1)
@@ -156,12 +163,13 @@ private:
             }
 
 
-            // ==============================
+            // ============================
             // 判断编号
-            // ==============================
+            // ============================
 
             if (choice < 1 ||
-                choice > static_cast<int>(shopData.props.size()))
+                choice > static_cast<int>(
+                    shopData.props.size()))
             {
                 std::cout
                     << "输入非法，请重新选择！\n";
@@ -172,9 +180,9 @@ private:
             }
 
 
-            // ==============================
+            // ============================
             // 获取商品
-            // ==============================
+            // ============================
 
             PropPtr& prop =
                 shopData.props[choice - 1];
@@ -184,14 +192,14 @@ private:
                 prop->GetPrice();
 
 
-            // ==============================
-            // 判断金币
-            // ==============================
+            // ============================
+            // 金币不足
+            // ============================
 
-            if (stats.golden < price)
+            if (money.golden < price)
             {
                 std::cout
-                    << "金币不足！\n";
+                    << "你的金币不足！\n";
 
                 sleep(1);
 
@@ -199,16 +207,16 @@ private:
             }
 
 
-            // ==============================
-            // 扣除金币
-            // ==============================
+            // ============================
+            // 扣钱
+            // ============================
 
-            stats.golden -= price;
+            money.golden -= price;
 
 
-            // ==============================
+            // ============================
             // 加入背包
-            // ==============================
+            // ============================
 
             inventory.items.push_back(
                 prop->clone()
@@ -223,7 +231,7 @@ private:
 
             std::cout
                 << "剩余金币："
-                << stats.golden
+                << money.golden
                 << "\n";
 
 

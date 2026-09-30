@@ -2,16 +2,22 @@
 
 void InputSystem::Update(World &world, Entity player)
 {
-    char choice;
+    openAttribute = false;
+    openBag = false;
 
-    std::cout << "请输入操作(w/a/s/d):";
-    std::cin >> choice;
+    if (!world.HasComponent<Velocity>(player))
+        return;
 
-    auto &velocity =
+    Velocity &velocity =
         world.GetComponent<Velocity>(player);
 
-    velocity.dx = 0;
-    velocity.dy = 0;
+    std::cout
+        << "请输入玩家操作"
+        << "(w:上 s:下 a:左 d:右 "
+        << "p:属性 b:背包): ";
+
+    char choice;
+    std::cin >> choice;
 
     switch (choice)
     {
@@ -29,6 +35,14 @@ void InputSystem::Update(World &world, Entity player)
 
     case 'd':
         velocity.dx = 1;
+        break;
+
+    case 'p':
+        openAttribute = true;
+        break;
+
+    case 'b':
+        openBag = true;
         break;
 
     default:

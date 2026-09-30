@@ -153,6 +153,34 @@ CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lvguanzhong/code/MyMagicTower/System/PlayerSystem.cpp -o CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.s
 
+CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.o: CMakeFiles/MyMagicTower.dir/flags.make
+CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.o: ../System/CollisionSystem.cpp
+CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.o: CMakeFiles/MyMagicTower.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lvguanzhong/code/MyMagicTower/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.o -MF CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.o.d -o CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.o -c /home/lvguanzhong/code/MyMagicTower/System/CollisionSystem.cpp
+
+CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lvguanzhong/code/MyMagicTower/System/CollisionSystem.cpp > CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.i
+
+CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lvguanzhong/code/MyMagicTower/System/CollisionSystem.cpp -o CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.s
+
+CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o: CMakeFiles/MyMagicTower.dir/flags.make
+CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o: ../System/UserSystem.cpp
+CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o: CMakeFiles/MyMagicTower.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lvguanzhong/code/MyMagicTower/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o -MF CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o.d -o CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o -c /home/lvguanzhong/code/MyMagicTower/System/UserSystem.cpp
+
+CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lvguanzhong/code/MyMagicTower/System/UserSystem.cpp > CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.i
+
+CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lvguanzhong/code/MyMagicTower/System/UserSystem.cpp -o CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.s
+
 # Object files for target MyMagicTower
 MyMagicTower_OBJECTS = \
 "CMakeFiles/MyMagicTower.dir/main.cpp.o" \
@@ -160,7 +188,9 @@ MyMagicTower_OBJECTS = \
 "CMakeFiles/MyMagicTower.dir/ECS/World.cpp.o" \
 "CMakeFiles/MyMagicTower.dir/System/MovementSystem.cpp.o" \
 "CMakeFiles/MyMagicTower.dir/System/InputSystem.cpp.o" \
-"CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.o"
+"CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.o" \
+"CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.o" \
+"CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o"
 
 # External object files for target MyMagicTower
 MyMagicTower_EXTERNAL_OBJECTS =
@@ -171,9 +201,11 @@ MyMagicTower: CMakeFiles/MyMagicTower.dir/ECS/World.cpp.o
 MyMagicTower: CMakeFiles/MyMagicTower.dir/System/MovementSystem.cpp.o
 MyMagicTower: CMakeFiles/MyMagicTower.dir/System/InputSystem.cpp.o
 MyMagicTower: CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.o
+MyMagicTower: CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.o
+MyMagicTower: CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o
 MyMagicTower: CMakeFiles/MyMagicTower.dir/build.make
 MyMagicTower: CMakeFiles/MyMagicTower.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lvguanzhong/code/MyMagicTower/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable MyMagicTower"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lvguanzhong/code/MyMagicTower/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable MyMagicTower"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MyMagicTower.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

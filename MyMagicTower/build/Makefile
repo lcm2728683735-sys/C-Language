@@ -177,6 +177,30 @@ ECS/World.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyMagicTower.dir/build.make CMakeFiles/MyMagicTower.dir/ECS/World.cpp.s
 .PHONY : ECS/World.cpp.s
 
+System/CollisionSystem.o: System/CollisionSystem.cpp.o
+.PHONY : System/CollisionSystem.o
+
+# target to build an object file
+System/CollisionSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyMagicTower.dir/build.make CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.o
+.PHONY : System/CollisionSystem.cpp.o
+
+System/CollisionSystem.i: System/CollisionSystem.cpp.i
+.PHONY : System/CollisionSystem.i
+
+# target to preprocess a source file
+System/CollisionSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyMagicTower.dir/build.make CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.i
+.PHONY : System/CollisionSystem.cpp.i
+
+System/CollisionSystem.s: System/CollisionSystem.cpp.s
+.PHONY : System/CollisionSystem.s
+
+# target to generate assembly for a file
+System/CollisionSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyMagicTower.dir/build.make CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.s
+.PHONY : System/CollisionSystem.cpp.s
+
 System/InputSystem.o: System/InputSystem.cpp.o
 .PHONY : System/InputSystem.o
 
@@ -249,6 +273,30 @@ System/PlayerSystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyMagicTower.dir/build.make CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.s
 .PHONY : System/PlayerSystem.cpp.s
 
+System/UserSystem.o: System/UserSystem.cpp.o
+.PHONY : System/UserSystem.o
+
+# target to build an object file
+System/UserSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyMagicTower.dir/build.make CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o
+.PHONY : System/UserSystem.cpp.o
+
+System/UserSystem.i: System/UserSystem.cpp.i
+.PHONY : System/UserSystem.i
+
+# target to preprocess a source file
+System/UserSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyMagicTower.dir/build.make CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.i
+.PHONY : System/UserSystem.cpp.i
+
+System/UserSystem.s: System/UserSystem.cpp.s
+.PHONY : System/UserSystem.s
+
+# target to generate assembly for a file
+System/UserSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyMagicTower.dir/build.make CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.s
+.PHONY : System/UserSystem.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -288,6 +336,9 @@ help:
 	@echo "... ECS/World.o"
 	@echo "... ECS/World.i"
 	@echo "... ECS/World.s"
+	@echo "... System/CollisionSystem.o"
+	@echo "... System/CollisionSystem.i"
+	@echo "... System/CollisionSystem.s"
 	@echo "... System/InputSystem.o"
 	@echo "... System/InputSystem.i"
 	@echo "... System/InputSystem.s"
@@ -297,6 +348,9 @@ help:
 	@echo "... System/PlayerSystem.o"
 	@echo "... System/PlayerSystem.i"
 	@echo "... System/PlayerSystem.s"
+	@echo "... System/UserSystem.o"
+	@echo "... System/UserSystem.i"
+	@echo "... System/UserSystem.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

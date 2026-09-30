@@ -1634,12 +1634,16 @@ CMakeFiles/MyMagicTower.dir/main.cpp.o
  /home/lvguanzhong/code/MyMagicTower/ECS/Component.h
  /home/lvguanzhong/code/MyMagicTower/Game/Prop.h
  /home/lvguanzhong/code/MyMagicTower/Global.h
+ /home/lvguanzhong/code/MyMagicTower/Game/Factory.h
  /home/lvguanzhong/code/MyMagicTower/System/RenderSystem.h
  /home/lvguanzhong/code/MyMagicTower/System/System.h
  /home/lvguanzhong/code/MyMagicTower/Global.h
  /home/lvguanzhong/code/MyMagicTower/Game/Factory.h
+ /home/lvguanzhong/code/MyMagicTower/System/InputSystem.h
  /home/lvguanzhong/code/MyMagicTower/System/MovementSystem.h
  /home/lvguanzhong/code/MyMagicTower/System/CollisionSystem.h
  /home/lvguanzhong/code/MyMagicTower/System/CombatSystem.h
  /home/lvguanzhong/code/MyMagicTower/System/ShopSystem.h
+ /home/lvguanzhong/code/MyMagicTower/System/AttributeSystem.h
+ /home/lvguanzhong/code/MyMagicTower/System/EquipmentSystem.h
 

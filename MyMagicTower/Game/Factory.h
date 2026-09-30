@@ -15,8 +15,6 @@ inline Entity CreatePlayer(
 {
     Entity player = world.CreateEntity();
 
-
-
     world.AddComponent<Position>(
         player,
         {0, 0}
@@ -44,23 +42,12 @@ inline Entity CreatePlayer(
 
     world.AddComponent<CombatStats>(
         player,
-        {
-            10,
-            1,
-            0,
-            0
-        }
+        {10, 1}
     );
 
     world.AddComponent<PlayerStats>(
         player,
-        {
-            1,
-            0,
-            0,
-            maxWidth,
-            maxHeight
-        }
+        {1, 0, 0}
     );
 
     world.AddComponent<Money>(
@@ -69,8 +56,13 @@ inline Entity CreatePlayer(
     );
 
     world.AddComponent<Inventory>(
-    player,
-    Inventory{}
+        player,
+        {}
+    );
+
+    world.AddComponent<Equipment>(
+        player,
+        {}
     );
 
     return player;
@@ -141,6 +133,7 @@ inline Entity CreateShop(
         shop,
         {}
     );
+
 
     return shop;
 }

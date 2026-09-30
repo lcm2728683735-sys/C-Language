@@ -4,9 +4,25 @@
 #include "../Global.h"
 #include "../ECS/World.h"
 
+
 class InputSystem
 {
-public:
-    void Update(World& world, Entity player);
+private:
+    bool openAttribute = false;
+    bool openBag = false;
 
+public:
+
+    void Update(World& world, Entity player);
+    
+
+    bool IsAttributeRequested() const
+    {
+        return openAttribute;
+    }
+
+    bool IsBagRequested() const
+    {
+        return openBag;
+    }
 };

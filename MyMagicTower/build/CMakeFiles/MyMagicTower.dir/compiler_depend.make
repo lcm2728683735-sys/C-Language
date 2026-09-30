@@ -1628,15 +1628,21 @@ CMakeFiles/MyMagicTower.dir/main.cpp.o: ../main.cpp \
   ../ECS/Component.h \
   ../Game/Prop.h \
   ../Global.h \
+  ../Game/Factory.h \
   ../System/RenderSystem.h \
   ../System/System.h \
   ../Global.h \
   ../Game/Factory.h \
+  ../System/InputSystem.h \
   ../System/MovementSystem.h \
   ../System/CollisionSystem.h \
   ../System/CombatSystem.h \
-  ../System/ShopSystem.h
+  ../System/ShopSystem.h \
+  ../System/AttributeSystem.h \
+  ../System/EquipmentSystem.h
 
+
+../System/AttributeSystem.h:
 
 ../System/ShopSystem.h:
 
@@ -1897,6 +1903,8 @@ CMakeFiles/MyMagicTower.dir/main.cpp.o: ../main.cpp \
 /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
+
+../System/EquipmentSystem.h:
 
 /usr/include/c++/11/debug/assertions.h:
 

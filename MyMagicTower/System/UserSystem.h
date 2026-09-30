@@ -1,7 +1,8 @@
-#pragma once
 
+#pragma once
+#include "System.h"
 #include "../Global.h"
-#include <fstream>
+
 
 #define USER_DATA_PATH "../Data/PassWord.txt"
 
@@ -14,18 +15,39 @@ struct UserData
 class UserSystem
 {
 public:
+    // 注册 / 登录界面
     void RegisterLoginUI();
 
-    //保存用户信息
-    void SaveUser(UserData & userdata);
-    //把所有用户信息读取
-    void ReadUser();
-    //验证账号密码
-    bool CheckUser(const std::string & username,const std::string & password);
-    //验证用户是否存在
-    bool UserExists(const std::string & username);
-
+    // 注册
     void Register();
-    void Login();
+
+    // 登录
+    bool Login();
+
+    // 保存用户账号密码
+    void SaveUser(UserData& userdata);
+
+    // 读取用户信息
+    void ReadUser();
+
+    // 检查用户名和密码是否正确
+    bool CheckUser(
+        const std::string& username,
+        const std::string& password
+    );
+
+    // 检查用户名是否存在
+    bool UserExists(
+        const std::string& username
+    );
+
+    // 获取当前登录用户
+    const std::string& GetCurrentUser() const
+    {
+        return currentUser;
+    }
+
 private:
+    // 当前登录的用户名
+    std::string currentUser;
 };

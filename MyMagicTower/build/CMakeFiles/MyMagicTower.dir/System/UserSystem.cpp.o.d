@@ -1,6 +1,8 @@
-CMakeFiles/MyMagicTower.dir/main.cpp.o: \
- /home/lvguanzhong/code/MyMagicTower/main.cpp /usr/include/stdc-predef.h \
- /home/lvguanzhong/code/MyMagicTower/Global.h \
+CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o: \
+ /home/lvguanzhong/code/MyMagicTower/System/UserSystem.cpp \
+ /usr/include/stdc-predef.h \
+ /home/lvguanzhong/code/MyMagicTower/System/UserSystem.h \
+ /home/lvguanzhong/code/MyMagicTower/System/../Global.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -207,22 +209,7 @@ CMakeFiles/MyMagicTower.dir/main.cpp.o: \
  /usr/include/c++/11/bits/quoted_string.h /usr/include/c++/11/sstream \
  /usr/include/c++/11/bits/sstream.tcc /usr/include/c++/11/codecvt \
  /usr/include/c++/11/bits/fs_dir.h /usr/include/c++/11/bits/fs_ops.h \
- /usr/include/c++/11/typeindex \
- /home/lvguanzhong/code/MyMagicTower/ECS/World.h \
- /home/lvguanzhong/code/MyMagicTower/ECS/../Global.h \
- /home/lvguanzhong/code/MyMagicTower/ECS/Entity.h \
- /home/lvguanzhong/code/MyMagicTower/ECS/Component.h \
- /home/lvguanzhong/code/MyMagicTower/ECS/../Game/Prop.h \
- /home/lvguanzhong/code/MyMagicTower/ECS/../Game/../Global.h \
- /home/lvguanzhong/code/MyMagicTower/Game/Factory.h \
- /home/lvguanzhong/code/MyMagicTower/System/RenderSystem.h \
- /home/lvguanzhong/code/MyMagicTower/System/System.h \
- /home/lvguanzhong/code/MyMagicTower/System/../Global.h \
- /home/lvguanzhong/code/MyMagicTower/System/../Game/Factory.h \
- /home/lvguanzhong/code/MyMagicTower/System/InputSystem.h \
- /home/lvguanzhong/code/MyMagicTower/System/MovementSystem.h \
- /home/lvguanzhong/code/MyMagicTower/System/CollisionSystem.h \
- /home/lvguanzhong/code/MyMagicTower/System/CombatSystem.h \
- /home/lvguanzhong/code/MyMagicTower/System/ShopSystem.h \
- /home/lvguanzhong/code/MyMagicTower/System/AttributeSystem.h \
- /home/lvguanzhong/code/MyMagicTower/System/EquipmentSystem.h
+ /usr/include/c++/11/typeindex /usr/include/c++/11/fstream \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+ /usr/include/c++/11/bits/fstream.tcc
