@@ -5,33 +5,36 @@
 #include "../ECS/World.h"
 
 
-class InputSystem
+class SaveSystem
 {
-private:
-    bool openAttribute = false;
-    bool openBag = false;
-    bool quit = false;
-
-
 public:
 
-    void Update(
+    // 保存玩家游戏数据
+    bool Save(
         World& world,
-        Entity player);
+        Entity player,
+        const std::string& username
+    );
 
 
-    bool IsAttributeRequested() const
-    {
-        return openAttribute;
-    }
+    // 加载玩家游戏数据
+    bool Load(
+        World& world,
+        Entity player,
+        const std::string& username
+    );
 
-    bool IsBagRequested() const
-    {
-        return openBag;
-    }
 
-    bool IsQuitRequested() const
-    {
-        return quit;
-    }
+    // 判断玩家是否存在存档
+    bool Exists(
+        const std::string& username
+    ) const;
+
+
+private:
+
+    // 获取存档路径
+    std::string GetSavePath(
+        const std::string& username
+    ) const;
 };

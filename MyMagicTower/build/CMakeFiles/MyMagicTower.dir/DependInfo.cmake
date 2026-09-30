@@ -14,6 +14,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/lvguanzhong/code/MyMagicTower/System/InputSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/InputSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/InputSystem.cpp.o.d"
   "/home/lvguanzhong/code/MyMagicTower/System/MovementSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/MovementSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/MovementSystem.cpp.o.d"
   "/home/lvguanzhong/code/MyMagicTower/System/PlayerSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.o.d"
+  "/home/lvguanzhong/code/MyMagicTower/System/SaveSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/SaveSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/SaveSystem.cpp.o.d"
   "/home/lvguanzhong/code/MyMagicTower/System/UserSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o.d"
   "/home/lvguanzhong/code/MyMagicTower/main.cpp" "CMakeFiles/MyMagicTower.dir/main.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/main.cpp.o.d"
   )

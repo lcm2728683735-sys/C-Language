@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/MyMagicTower.dir/System/MovementSystem.cpp.o.d"
   "CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.o"
   "CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.o.d"
+  "CMakeFiles/MyMagicTower.dir/System/SaveSystem.cpp.o"
+  "CMakeFiles/MyMagicTower.dir/System/SaveSystem.cpp.o.d"
   "CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o"
   "CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o.d"
   "CMakeFiles/MyMagicTower.dir/main.cpp.o"

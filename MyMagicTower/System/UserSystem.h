@@ -4,7 +4,7 @@
 #include "../Global.h"
 
 
-#define USER_DATA_PATH "../Data/PassWord.txt"
+#define USER_DATA_PATH "Data/PassWord.txt"
 
 struct UserData
 {

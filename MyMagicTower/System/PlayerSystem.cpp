@@ -83,9 +83,7 @@ Entity PlayerSystem::CreatePlayer(World world, const std::string &name)
         PlayerStats{
             1,      // level
             0,      // exp
-            0,      // attrPoint
-            16,     // maxWidth
-            10      // maxHeight
+            0       // attrPoint
         }
     );
 

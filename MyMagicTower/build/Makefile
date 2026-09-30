@@ -273,6 +273,30 @@ System/PlayerSystem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyMagicTower.dir/build.make CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.s
 .PHONY : System/PlayerSystem.cpp.s
 
+System/SaveSystem.o: System/SaveSystem.cpp.o
+.PHONY : System/SaveSystem.o
+
+# target to build an object file
+System/SaveSystem.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyMagicTower.dir/build.make CMakeFiles/MyMagicTower.dir/System/SaveSystem.cpp.o
+.PHONY : System/SaveSystem.cpp.o
+
+System/SaveSystem.i: System/SaveSystem.cpp.i
+.PHONY : System/SaveSystem.i
+
+# target to preprocess a source file
+System/SaveSystem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyMagicTower.dir/build.make CMakeFiles/MyMagicTower.dir/System/SaveSystem.cpp.i
+.PHONY : System/SaveSystem.cpp.i
+
+System/SaveSystem.s: System/SaveSystem.cpp.s
+.PHONY : System/SaveSystem.s
+
+# target to generate assembly for a file
+System/SaveSystem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/MyMagicTower.dir/build.make CMakeFiles/MyMagicTower.dir/System/SaveSystem.cpp.s
+.PHONY : System/SaveSystem.cpp.s
+
 System/UserSystem.o: System/UserSystem.cpp.o
 .PHONY : System/UserSystem.o
 
@@ -348,6 +372,9 @@ help:
 	@echo "... System/PlayerSystem.o"
 	@echo "... System/PlayerSystem.i"
 	@echo "... System/PlayerSystem.s"
+	@echo "... System/SaveSystem.o"
+	@echo "... System/SaveSystem.i"
+	@echo "... System/SaveSystem.s"
 	@echo "... System/UserSystem.o"
 	@echo "... System/UserSystem.i"
 	@echo "... System/UserSystem.s"
