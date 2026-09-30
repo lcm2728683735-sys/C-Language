@@ -144,18 +144,14 @@ struct Health
 
 struct PlayerStats
 {
-    int hp = 100;
-    int attack = 10;
-    int defend = 1;
     int level = 1;
     int exp = 0;
-    int golden = 100;
     int attrPoint = 0;
 };
 
 struct Money
 {
-    int golden = 0;
+    int golden = 100;
 };
 
 struct CombatStats
