@@ -1,58 +1,144 @@
-#include <iostream>
-#include <cstdlib>
-#include "ECS/World.h"
-#include "Game/Factory.h"
-#include "System/CollisionSystem.h"
-#include "System/InputSystem.h"
-#include "System/MovementSystem.h"
-#include "System/RenderSystem.h"
+#include "Global.h"
 
-#define WIDTH 16
-#define HEIGHT 10
+#include "ECS/World.h"
+
+#include "System/RenderSystem.h"
+#include "System/MovementSystem.h"
+#include "System/CollisionSystem.h"
+#include "System/CombatSystem.h"
+#include "System/ShopSystem.h"
+
 
 int main()
 {
     World world;
-    CollisionSystem collisionSystem;
+
+
+    // =========================================
+    // 创建玩家
+    // =========================================
 
     Entity player =
-        CreatePlayer(
-            world,
-            "张三",
-            WIDTH,
-            HEIGHT);
+        world.CreateEntity();
 
-    CreateShop(
-        world,
-        {WIDTH / 2,
-         HEIGHT / 2});
 
-    CreateSlime(world, {3, 2});
-    CreateSlime(world, {5, 7});
-    CreateSlime(world, {8, 3});
-    CreateSlime(world, {12, 6});
-    CreateSlime(world, {14, 1});
+    world.AddComponent<Position>(
+        player,
+        Position{0, 0}
+    );
 
-    InputSystem inputSystem;
 
-    MovementSystem movementSystem(
-        WIDTH,
-        HEIGHT);
+    world.AddComponent<Symbol>(
+        player,
+        Symbol{"🤣"}
+    );
 
-    RenderSystem renderSystem(
-        WIDTH,
-        HEIGHT);
+
+    world.AddComponent<Health>(
+        player,
+        Health{100}
+    );
+
+
+    world.AddComponent<PlayerStats>(
+        player,
+        PlayerStats{}
+    );
+
+
+    world.AddComponent<Inventory>(
+        player,
+        Inventory{}
+    );
+
+
+    // =========================================
+    // 创建商店
+    // =========================================
+
+    Entity shop =
+        world.CreateEntity();
+
+
+    world.AddComponent<Position>(
+        shop,
+        Position{
+            WIDTH / 2,
+            HEIGHT / 2
+        }
+    );
+
+
+    world.AddComponent<Symbol>(
+        shop,
+        Symbol{"🛒"}
+    );
+
+
+    world.AddComponent<ShopData>(
+        shop,
+        ShopData{}
+    );
+
+
+    // =========================================
+    // 创建系统
+    // =========================================
+
+    RenderSystem renderSystem(WIDTH,HEIGHT);
+
+    MovementSystem movementSystem(WIDTH, HEIGHT);
+
+    CollisionSystem collisionSystem;
+
+    CombatSystem combatSystem;
+
+    ShopSystem shopSystem;
+
+
+    // =========================================
+    // 游戏循环
+    // =========================================
 
     while (true)
     {
-    renderSystem.Update(world);
+        system("clear");
 
-    inputSystem.Update(world, player);
 
-    movementSystem.Update(world);
+        // 地图
+        renderSystem.Update(world);
 
-    collisionSystem.Update(world, player);
+
+        // 玩家移动
+        movementSystem.Update(
+            world
+        );
+
+        // 商店
+        shopSystem.Update(
+            world,
+            player
+        );
+
+
+        // 战斗
+        Entity monster =
+            collisionSystem.CheckMonsterCollision(
+                world,
+                player
+            );
+
+
+        if (monster != INVALID_ENTITY)
+        {
+            combatSystem.Battle(
+                world,
+                player,
+                monster
+            );
+        }
     }
+
 
     return 0;
 }

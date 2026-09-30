@@ -2,6 +2,7 @@
 
 #include "../Global.h"
 #include "Entity.h"
+#include "../Game/Prop.h"
 
 class IComponentStorage
 {
@@ -143,12 +144,13 @@ struct Health
 
 struct PlayerStats
 {
+    int hp = 100;
+    int attack = 10;
+    int defend = 1;
     int level = 1;
     int exp = 0;
+    int golden = 100;
     int attrPoint = 0;
-
-    int maxWidth = 0;
-    int maxHeight = 0;
 };
 
 struct Money
@@ -171,10 +173,27 @@ struct MonsterData
     int golden = 0;
 };
 
-struct ShopData
+struct Inventory
 {
+    std::vector<PropPtr> items;
 };
 
+struct ShopData
+{
+    std::vector<PropPtr> props;
+
+    ShopData()
+    {
+        props.push_back(std::make_shared<Weapon>("饮血剑", 10, 10));
+
+        props.push_back(std::make_shared<Weapon>("无尽之刃", 20, 20));
+
+        props.push_back(std::make_shared<Weapon>("BKB", 30, 30));
+
+        props.push_back(std::make_shared<Weapon>("跳刀", 40, 40)
+        );
+    }
+};
 
 
 

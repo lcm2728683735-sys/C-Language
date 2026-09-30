@@ -211,4 +211,6 @@ CMakeFiles/MyMagicTower.dir/ECS/World.cpp.o: \
  /usr/include/c++/11/bits/fs_dir.h /usr/include/c++/11/bits/fs_ops.h \
  /usr/include/c++/11/typeindex \
  /home/lvguanzhong/code/MyMagicTower/ECS/Entity.h \
- /home/lvguanzhong/code/MyMagicTower/ECS/Component.h
+ /home/lvguanzhong/code/MyMagicTower/ECS/Component.h \
+ /home/lvguanzhong/code/MyMagicTower/ECS/../Game/Prop.h \
+ /home/lvguanzhong/code/MyMagicTower/ECS/../Game/../Global.h

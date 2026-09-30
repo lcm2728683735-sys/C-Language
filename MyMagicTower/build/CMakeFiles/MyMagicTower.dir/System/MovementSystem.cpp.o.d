@@ -215,4 +215,6 @@ CMakeFiles/MyMagicTower.dir/System/MovementSystem.cpp.o: \
  /home/lvguanzhong/code/MyMagicTower/System/../ECS/../Global.h \
  /home/lvguanzhong/code/MyMagicTower/System/../ECS/Entity.h \
  /home/lvguanzhong/code/MyMagicTower/System/../ECS/Component.h \
+ /home/lvguanzhong/code/MyMagicTower/System/../ECS/../Game/Prop.h \
+ /home/lvguanzhong/code/MyMagicTower/System/../ECS/../Game/../Global.h \
  /home/lvguanzhong/code/MyMagicTower/System/../Game/Factory.h

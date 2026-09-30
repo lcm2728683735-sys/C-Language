@@ -533,7 +533,9 @@ CMakeFiles/MyMagicTower.dir/ECS/World.cpp.o: ../ECS/World.cpp \
   /usr/include/c++/11/bits/fs_ops.h \
   /usr/include/c++/11/typeindex \
   ../ECS/Entity.h \
-  ../ECS/Component.h
+  ../ECS/Component.h \
+  ../Game/Prop.h \
+  ../Global.h
 
 CMakeFiles/MyMagicTower.dir/System/InputSystem.cpp.o: ../System/InputSystem.cpp \
   /usr/include/stdc-predef.h \
@@ -804,7 +806,9 @@ CMakeFiles/MyMagicTower.dir/System/InputSystem.cpp.o: ../System/InputSystem.cpp 
   ../ECS/World.h \
   ../Global.h \
   ../ECS/Entity.h \
-  ../ECS/Component.h
+  ../ECS/Component.h \
+  ../Game/Prop.h \
+  ../Global.h
 
 CMakeFiles/MyMagicTower.dir/System/MovementSystem.cpp.o: ../System/MovementSystem.cpp \
   /usr/include/stdc-predef.h \
@@ -1076,6 +1080,8 @@ CMakeFiles/MyMagicTower.dir/System/MovementSystem.cpp.o: ../System/MovementSyste
   ../Global.h \
   ../ECS/Entity.h \
   ../ECS/Component.h \
+  ../Game/Prop.h \
+  ../Global.h \
   ../Game/Factory.h
 
 CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.o: ../System/PlayerSystem.cpp \
@@ -1348,10 +1354,13 @@ CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.o: ../System/PlayerSystem.cp
   ../Global.h \
   ../ECS/Entity.h \
   ../ECS/Component.h \
+  ../Game/Prop.h \
+  ../Global.h \
   ../Game/Factory.h
 
 CMakeFiles/MyMagicTower.dir/main.cpp.o: ../main.cpp \
   /usr/include/stdc-predef.h \
+  ../Global.h \
   /usr/include/c++/11/iostream \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
   /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -1530,8 +1539,6 @@ CMakeFiles/MyMagicTower.dir/main.cpp.o: ../main.cpp \
   /usr/include/c++/11/bits/ostream.tcc \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
-  ../ECS/World.h \
-  ../Global.h \
   /usr/include/c++/11/vector \
   /usr/include/c++/11/bits/stl_uninitialized.h \
   /usr/include/c++/11/bits/stl_vector.h \
@@ -1615,17 +1622,23 @@ CMakeFiles/MyMagicTower.dir/main.cpp.o: ../main.cpp \
   /usr/include/c++/11/bits/fs_dir.h \
   /usr/include/c++/11/bits/fs_ops.h \
   /usr/include/c++/11/typeindex \
+  ../ECS/World.h \
+  ../Global.h \
   ../ECS/Entity.h \
   ../ECS/Component.h \
-  ../Game/Factory.h \
-  ../System/CollisionSystem.h \
-  ../System/InputSystem.h \
+  ../Game/Prop.h \
+  ../Global.h \
+  ../System/RenderSystem.h \
   ../System/System.h \
   ../Global.h \
-  ../System/MovementSystem.h \
   ../Game/Factory.h \
-  ../System/RenderSystem.h
+  ../System/MovementSystem.h \
+  ../System/CollisionSystem.h \
+  ../System/CombatSystem.h \
+  ../System/ShopSystem.h
 
+
+../System/ShopSystem.h:
 
 ../System/CollisionSystem.h:
 
@@ -1820,6 +1833,8 @@ CMakeFiles/MyMagicTower.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/11/bits/node_handle.h:
 
 /usr/include/c++/11/ext/numeric_traits.h:
+
+../Game/Prop.h:
 
 ../ECS/World.cpp:
 
@@ -2072,6 +2087,8 @@ CMakeFiles/MyMagicTower.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/11/bits/streambuf_iterator.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
+
+../System/CombatSystem.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 

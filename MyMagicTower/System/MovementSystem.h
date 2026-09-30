@@ -9,6 +9,7 @@
 class MovementSystem : public ISystem
 {
 public:
+    MovementSystem() = default;
     MovementSystem(int width, int height):width(width), height(height){}
 
     void Update(World& world) override;

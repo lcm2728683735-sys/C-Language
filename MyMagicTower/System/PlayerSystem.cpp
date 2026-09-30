@@ -94,5 +94,10 @@ Entity PlayerSystem::CreatePlayer(World world, const std::string &name)
         Money{0}
     );
 
+    world.AddComponent<Inventory>(
+    player,
+    Inventory{}
+);
+
     return player;
 }

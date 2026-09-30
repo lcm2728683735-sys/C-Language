@@ -15,6 +15,8 @@ inline Entity CreatePlayer(
 {
     Entity player = world.CreateEntity();
 
+
+
     world.AddComponent<Position>(
         player,
         {0, 0}
@@ -64,6 +66,11 @@ inline Entity CreatePlayer(
     world.AddComponent<Money>(
         player,
         {0}
+    );
+
+    world.AddComponent<Inventory>(
+    player,
+    Inventory{}
     );
 
     return player;

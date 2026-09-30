@@ -4,6 +4,8 @@
 
 using Entity = std::uint32_t;
 
+constexpr Entity INVALID_ENTITY = 0;
+
 class EntityManager
 {
 //生成Entity,优先使用已经销毁的Entity
