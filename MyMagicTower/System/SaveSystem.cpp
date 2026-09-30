@@ -16,7 +16,7 @@ using namespace std;
 string SaveSystem::GetSavePath(
     const string& username) const
 {
-    return "../Data/Save/" + username + ".save";
+    return "Data/Save/" + username + ".save";
 }
 
 
@@ -44,7 +44,7 @@ bool SaveSystem::Save(
 {
     // 如果 Save 文件夹不存在，就创建
     filesystem::create_directories(
-        "../Data/Save"
+        "Data/Save"
     );
 
     string path =
