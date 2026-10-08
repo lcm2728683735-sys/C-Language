@@ -9,7 +9,6 @@ class IComponentStorage
 {
 public:
     virtual ~IComponentStorage() = default;
-
     virtual void RemoveEntity(Entity entity) = 0;
 };
 
