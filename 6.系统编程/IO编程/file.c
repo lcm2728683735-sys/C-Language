@@ -142,6 +142,7 @@ int main ()
         char str[100] = {0};
         scanf("%s",str);
         fprintf(f,"%s\n",str);
+        fflush(f);
     }
     fclose(f);
     
