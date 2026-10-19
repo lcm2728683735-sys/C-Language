@@ -1,0 +1,5 @@
+/usr/local/lib/libMyIPCLib.so
+/usr/local/include/StdFIFO.h
+/usr/local/include/StdMsgQueue.h
+/usr/local/include/StdSem.h
+/usr/local/include/StdShrdMem.h

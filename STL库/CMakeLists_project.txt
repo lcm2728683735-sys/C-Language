@@ -1,0 +1,24 @@
+cmake_minimum_required(VERSION 3.10)
+
+# ==================== 1. 设置你的应用项目名称 ====================
+project(MyApp CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# ==================== 2. 添加你的可执行程序及所有源文件 ====================
+# 如果你的项目有多个 .cpp 文件，全部罗列在这里
+add_executable(${PROJECT_NAME}
+    main.cpp
+    other1.cpp
+    other2.cpp
+    # 可以在这里继续追加其他源文件...
+)
+
+# ==================== 3. 链接你需要的外部动态库 ====================
+# 如果该库已经安装到了系统路径（如 /usr/local/lib），直接写库名即可
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    MyLibName
+    # 如果还需要链接其他库（如多线程库 pthread），也可以在这里追加：
+    # pthread
+)

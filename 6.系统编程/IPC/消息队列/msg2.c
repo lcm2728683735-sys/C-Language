@@ -16,7 +16,7 @@ int main()
         return -1;
     }
     //获得一个消息队列
-    //msgflag : 
+    //msgget 打开或者创建一个消息队列
     int msgid = msgget(key,IPC_CREAT | 0666);
     if(msgid < 0)
     {
@@ -31,7 +31,7 @@ int main()
     // MSG_NOERROR:有错误不通知 
 
     //msgsz : 传的是消息内容的大小
-
+    //msgrcv接收消息队列中一条消息
     msgrcv(msgid,&m,sizeof(m.text),1,0);
     printf("%s\n",m.text);
 
@@ -40,7 +40,7 @@ int main()
     // #define IPC_RMID	0		/* Remove identifier.  */
     // #define IPC_SET  1		/* Set `ipc_perm' options.  */
     // #define IPC_STAT	2		/* Get `ipc_perm' options.  */
-
+    //msgctl控制消息队列 IPC_RMID为删除
     msgctl(msgid,IPC_RMID,NULL);
     return 0;
 }
