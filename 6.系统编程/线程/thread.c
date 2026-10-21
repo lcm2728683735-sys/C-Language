@@ -4,6 +4,7 @@
 void* ThreadHandle(void *arg)
 {
     long num = (long)arg;
+    pthread_setcancelstate(PTHREAD_CANCEL_DISABLE,NULL);
     while (1)
     {
         printf("我是%ld线程!\n",num);
