@@ -1,9 +1,9 @@
 CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o: \
- /home/lvguanzhong/code/MyMagicTower/System/UserSystem.cpp \
+ /home/lvguanzhong/code/项目/MyMagicTower/System/UserSystem.cpp \
  /usr/include/stdc-predef.h \
- /home/lvguanzhong/code/MyMagicTower/System/UserSystem.h \
- /home/lvguanzhong/code/MyMagicTower/System/System.h \
- /home/lvguanzhong/code/MyMagicTower/System/../Global.h \
+ /home/lvguanzhong/code/项目/MyMagicTower/System/UserSystem.h \
+ /home/lvguanzhong/code/项目/MyMagicTower/System/System.h \
+ /home/lvguanzhong/code/项目/MyMagicTower/System/../Global.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

@@ -8,15 +8,15 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/lvguanzhong/code/MyMagicTower/ECS/Entity.cpp" "CMakeFiles/MyMagicTower.dir/ECS/Entity.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/ECS/Entity.cpp.o.d"
-  "/home/lvguanzhong/code/MyMagicTower/ECS/World.cpp" "CMakeFiles/MyMagicTower.dir/ECS/World.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/ECS/World.cpp.o.d"
-  "/home/lvguanzhong/code/MyMagicTower/System/CollisionSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.o.d"
-  "/home/lvguanzhong/code/MyMagicTower/System/InputSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/InputSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/InputSystem.cpp.o.d"
-  "/home/lvguanzhong/code/MyMagicTower/System/MovementSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/MovementSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/MovementSystem.cpp.o.d"
-  "/home/lvguanzhong/code/MyMagicTower/System/PlayerSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.o.d"
-  "/home/lvguanzhong/code/MyMagicTower/System/SaveSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/SaveSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/SaveSystem.cpp.o.d"
-  "/home/lvguanzhong/code/MyMagicTower/System/UserSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o.d"
-  "/home/lvguanzhong/code/MyMagicTower/main.cpp" "CMakeFiles/MyMagicTower.dir/main.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/main.cpp.o.d"
+  "/home/lvguanzhong/code/项目/MyMagicTower/ECS/Entity.cpp" "CMakeFiles/MyMagicTower.dir/ECS/Entity.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/ECS/Entity.cpp.o.d"
+  "/home/lvguanzhong/code/项目/MyMagicTower/ECS/World.cpp" "CMakeFiles/MyMagicTower.dir/ECS/World.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/ECS/World.cpp.o.d"
+  "/home/lvguanzhong/code/项目/MyMagicTower/System/CollisionSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/CollisionSystem.cpp.o.d"
+  "/home/lvguanzhong/code/项目/MyMagicTower/System/InputSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/InputSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/InputSystem.cpp.o.d"
+  "/home/lvguanzhong/code/项目/MyMagicTower/System/MovementSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/MovementSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/MovementSystem.cpp.o.d"
+  "/home/lvguanzhong/code/项目/MyMagicTower/System/PlayerSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/PlayerSystem.cpp.o.d"
+  "/home/lvguanzhong/code/项目/MyMagicTower/System/SaveSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/SaveSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/SaveSystem.cpp.o.d"
+  "/home/lvguanzhong/code/项目/MyMagicTower/System/UserSystem.cpp" "CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/System/UserSystem.cpp.o.d"
+  "/home/lvguanzhong/code/项目/MyMagicTower/main.cpp" "CMakeFiles/MyMagicTower.dir/main.cpp.o" "gcc" "CMakeFiles/MyMagicTower.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links.

@@ -1,8 +1,8 @@
 CMakeFiles/MyMagicTower.dir/ECS/Entity.cpp.o: \
- /home/lvguanzhong/code/MyMagicTower/ECS/Entity.cpp \
+ /home/lvguanzhong/code/项目/MyMagicTower/ECS/Entity.cpp \
  /usr/include/stdc-predef.h \
- /home/lvguanzhong/code/MyMagicTower/ECS/Entity.h \
- /home/lvguanzhong/code/MyMagicTower/ECS/../Global.h \
+ /home/lvguanzhong/code/项目/MyMagicTower/ECS/Entity.h \
+ /home/lvguanzhong/code/项目/MyMagicTower/ECS/../Global.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

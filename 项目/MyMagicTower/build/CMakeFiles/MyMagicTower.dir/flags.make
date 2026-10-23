@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/lvguanzhong/code/MyMagicTower
+CXX_INCLUDES = -I/home/lvguanzhong/code/项目/MyMagicTower
 
 CXX_FLAGS = 
 

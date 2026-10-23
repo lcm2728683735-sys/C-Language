@@ -1,4 +1,4 @@
-# Install script for directory: /home/lvguanzhong/code/MyMagicTower
+# Install script for directory: /home/lvguanzhong/code/项目/MyMagicTower
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/lvguanzhong/code/MyMagicTower/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/lvguanzhong/code/项目/MyMagicTower/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

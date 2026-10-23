@@ -1,9 +1,9 @@
 CMakeFiles/MyMagicTower.dir/System/MovementSystem.cpp.o: \
- /home/lvguanzhong/code/MyMagicTower/System/MovementSystem.cpp \
+ /home/lvguanzhong/code/项目/MyMagicTower/System/MovementSystem.cpp \
  /usr/include/stdc-predef.h \
- /home/lvguanzhong/code/MyMagicTower/System/MovementSystem.h \
- /home/lvguanzhong/code/MyMagicTower/System/System.h \
- /home/lvguanzhong/code/MyMagicTower/System/../Global.h \
+ /home/lvguanzhong/code/项目/MyMagicTower/System/MovementSystem.h \
+ /home/lvguanzhong/code/项目/MyMagicTower/System/System.h \
+ /home/lvguanzhong/code/项目/MyMagicTower/System/../Global.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -211,10 +211,10 @@ CMakeFiles/MyMagicTower.dir/System/MovementSystem.cpp.o: \
  /usr/include/c++/11/bits/sstream.tcc /usr/include/c++/11/codecvt \
  /usr/include/c++/11/bits/fs_dir.h /usr/include/c++/11/bits/fs_ops.h \
  /usr/include/c++/11/typeindex \
- /home/lvguanzhong/code/MyMagicTower/System/../ECS/World.h \
- /home/lvguanzhong/code/MyMagicTower/System/../ECS/../Global.h \
- /home/lvguanzhong/code/MyMagicTower/System/../ECS/Entity.h \
- /home/lvguanzhong/code/MyMagicTower/System/../ECS/Component.h \
- /home/lvguanzhong/code/MyMagicTower/System/../ECS/../Game/Prop.h \
- /home/lvguanzhong/code/MyMagicTower/System/../ECS/../Game/../Global.h \
- /home/lvguanzhong/code/MyMagicTower/System/../Game/Factory.h
+ /home/lvguanzhong/code/项目/MyMagicTower/System/../ECS/World.h \
+ /home/lvguanzhong/code/项目/MyMagicTower/System/../ECS/../Global.h \
+ /home/lvguanzhong/code/项目/MyMagicTower/System/../ECS/Entity.h \
+ /home/lvguanzhong/code/项目/MyMagicTower/System/../ECS/Component.h \
+ /home/lvguanzhong/code/项目/MyMagicTower/System/../ECS/../Game/Prop.h \
+ /home/lvguanzhong/code/项目/MyMagicTower/System/../ECS/../Game/../Global.h \
+ /home/lvguanzhong/code/项目/MyMagicTower/System/../Game/Factory.h
