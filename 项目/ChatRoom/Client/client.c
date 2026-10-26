@@ -4,6 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "StdThread.h"
+#include <unistd.h>
 #define ip "192.168.191.129"
 #define port 8080
 
@@ -16,8 +17,25 @@ void Login(TcpC *c)
     m.flag = LOGIN; //注册用户名
     printf("请输入你的用户名:");
     scanf("%s",m.FromName);
+    printf("请输入你的密码:");
+    scanf("%s",m.Content);
     strcpy(MyName,m.FromName);
     TcpClientSend(c,&m,sizeof(m));
+
+    if(TcpClientRecv(c,&m,sizeof(MSG)) == false)
+    {
+        exit(-1);
+    }
+    if(strcmp(m.Content,"注册成功") == 0)
+    {
+        printf("注册成功！欢迎来到聊天室!\n");
+        sleep(2);
+    }
+    else
+    {
+        printf("注册错误:%s\n",m.Content);
+        Login(c);
+    }
 }
 
 MSG ChatToClient()
@@ -33,11 +51,19 @@ MSG ChatToClient()
     return m;
 }
 
-void Analysis(MSG *m)
+void AnalysisRecv(MSG *m)
 {
     switch(m->flag)
     {
-    case        
+    case CHAT:
+        
+    case BROADCAST:
+        printf("接收到来自|%s|的消息:%s\n",m->FromName,m->Content);
+        break;
+    case ONLINELIST:
+        ShowOnlineList(m);
+        break;
+    defalut:
         break;
     }
 }
@@ -53,13 +79,18 @@ void * ThreadHandle(void* arg)
             printf("读线程接收错误");
             exit(-1);
         }
-        printf("接收到来自|%s|的消息:%s\n",m.FromName,m.Content);
+        AnalysisRecv(&m);
     }
 }
 
-int main()
+int main(int argc,char * argv[])
 {
-    TcpC*c = TcpClientInit(ip,port);
+    if(argc != 3)
+    {
+        printf("参数数量不对！\n");
+        return -1;
+    }
+    TcpC*c = TcpClientInit(argv[1],atoi(argv[2]));
 
     Login(c);
     Thread * t = ThreadInit(ThreadHandle,c);

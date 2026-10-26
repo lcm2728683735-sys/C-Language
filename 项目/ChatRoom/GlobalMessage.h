@@ -21,7 +21,8 @@ enum Request
     LOGIN,
     CHAT,
     BROADCAST,
-    ONLINELIST //在线链表
+    ONLINELIST, //在线链表
+    SENDFILE
 };
 
 

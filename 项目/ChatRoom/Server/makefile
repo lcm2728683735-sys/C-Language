@@ -1,11 +1,12 @@
-obj = *.c ../GlobalMessage.c
-server: $(obj)
-	gcc $(obj) -o server
+# 使用 $(wildcard) 函数正确获取当前目录下的所有 .c 文件
+src = $(wildcard *.c) ../GlobalMessage.c
 
-.PHONY:all clean
+server: $(src)
+	gcc $(src) -o server -lsqlite3
 
-all:
-	make server
+.PHONY: all clean
+
+all: server
 
 clean:
 	rm -f server

@@ -5,10 +5,11 @@
 #include "StdThread.h"
 #include "../GlobalMessage.h"
 #include "List.h"
+#include "DataCenter.h"
 #define ip "192.168.191.129"
 #define port 8080
 
-List ClientList;
+List ClientList = {0};
 
 char* GetOnlinelist()
 {
@@ -36,8 +37,27 @@ void SolveRequest(MSG *m,int clientSock)
     switch(m->flag)
     {
     case LOGIN:
-        List_PushBack(&ClientList,CreateCInfo(m->FromName,clientSock));
-        List_Travel(&ClientList,PrintCInfo);
+        if(IsUserExist(m->FromName) == false)
+        {
+            if(AddNewUser(m->FromName,m->Content)==true)
+            {
+                List_PushBack(&ClientList,CreateCInfo(m->FromName,clientSock));
+                List_Travel(&ClientList,PrintCInfo);
+                memset(m->Content,ContentSize,0);
+                strcpy(m->Content,"注册成功");
+            }
+            else
+            {
+                memset(m->Content,ContentSize,0);
+                strcpy(m->Content,"服务器错误");
+            }
+        }
+        else
+        {                
+            memset(m->Content,ContentSize,0);
+            strcpy(m->Content,"用户已被注册");
+        }
+        TcpServerSend(clientSock,m,sizeof(MSG));
         break;
     case CHAT:
         List findList = List_FindElement
@@ -101,6 +121,11 @@ void * ClientHandle(void * arg)
 
 int main ()
 {
+    if(DataCenterInit() == false)
+    {
+        printf("数据中心初始化失败!\n");
+        return -1;
+    }
     TcpS *s = TcpServerInit(ip,port);
 
     int clientSock = -1;
