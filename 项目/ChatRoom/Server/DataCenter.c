@@ -35,3 +35,15 @@ bool AddNewUser(const char *name, const char *passwd)
     sprintf(sql,"insert into user values('%s','%s');",name,passwd);
     return SQLExec(s,sql);
 }
+
+bool IsAccountEqual(const char *name, const char *passwd)
+{
+    char sql[1024] = {0};
+    sprintf(sql,"select count(*)from user where name = '%s' and passwd ='%s';",name,passwd);
+    char ** result = GetTableInfo(s,sql,NULL,NULL);
+    if(result == NULL)
+        return false;
+    int count = atoi(result[1]);
+    FreeTableInfo(result);
+    return count!=0;
+}

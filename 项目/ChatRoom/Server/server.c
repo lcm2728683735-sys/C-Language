@@ -6,6 +6,7 @@
 #include "../GlobalMessage.h"
 #include "List.h"
 #include "DataCenter.h"
+#include "StdThreadPool.h"
 #define ip "192.168.191.129"
 #define port 8080
 
@@ -36,7 +37,8 @@ void SolveRequest(MSG *m,int clientSock)
 {
     switch(m->flag)
     {
-    case LOGIN:
+    case SIGNUP:
+    {
         if(IsUserExist(m->FromName) == false)
         {
             if(AddNewUser(m->FromName,m->Content)==true)
@@ -59,7 +61,34 @@ void SolveRequest(MSG *m,int clientSock)
         }
         TcpServerSend(clientSock,m,sizeof(MSG));
         break;
+    }
+    case LOGIN:
+    {
+        
+        if(IsUserExist(m->FromName) == true)
+        {
+            if(IsAccountEqual(m->FromName,m->Content) ==true)
+            {
+                memset(m->Content,ContentSize,0);
+                strcpy(m->Content,"登录成功");
+            }
+            else
+            {
+                memset(m->Content,ContentSize,0);
+                strcpy(m->Content,"账号密码错误");
+            }
+        }
+        else
+        {
+            memset(m->Content,ContentSize,0);
+            strcpy(m->Content,"账号不存在");
+        }
+        TcpServerSend(clientSock,m,sizeof(MSG));
+        break;
+    }
     case CHAT:
+    case SENDFILE:
+    {
         List findList = List_FindElement
         (&ClientList, m->ToName, IsClientNameEqual);
         if(findList.size == 0)
@@ -77,7 +106,9 @@ void SolveRequest(MSG *m,int clientSock)
         }
         List_Clear(&findList);
         break;
+    }
     case BROADCAST:
+    {
         Node * travelPoint = ClientList.head;
         while(travelPoint != NULL)
         {
@@ -89,13 +120,18 @@ void SolveRequest(MSG *m,int clientSock)
             travelPoint = travelPoint->next;
         }
         break;
+    }
 
     case ONLINELIST:
+    {
         char * content = GetOnlinelist();
         printf("在线列表为:%s\n",content);
         strcpy(m->Content,content);
         TcpServerSend(clientSock,m,sizeof(MSG));
         free(content);
+        break;
+    }
+    default:
         break;
     }
 }
@@ -127,12 +163,13 @@ int main ()
         return -1;
     }
     TcpS *s = TcpServerInit(ip,port);
+    ThreadP * p = ThreadPoolInit(10,2,10,3600);
 
     int clientSock = -1;
     while((clientSock = TcpServerAccept(s)) >= 0)
     {
         printf("接入新的客户端,套接字是:%d\n",clientSock);
-        Thread * t = ThreadInit(ClientHandle,&clientSock);
+        ThreadPoolAddTask(p,ClientHandle,&clientSock);
     }
 
 

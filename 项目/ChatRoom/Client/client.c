@@ -11,33 +11,6 @@
 
 static char MyName[NameSize];
 
-void Login(TcpC *c)
-{
-    MSG m;
-    m.flag = LOGIN; //注册用户名
-    printf("请输入你的用户名:");
-    scanf("%s",m.FromName);
-    printf("请输入你的密码:");
-    scanf("%s",m.Content);
-    strcpy(MyName,m.FromName);
-    TcpClientSend(c,&m,sizeof(m));
-
-    if(TcpClientRecv(c,&m,sizeof(MSG)) == false)
-    {
-        exit(-1);
-    }
-    if(strcmp(m.Content,"注册成功") == 0)
-    {
-        printf("注册成功！欢迎来到聊天室!\n");
-        sleep(2);
-    }
-    else
-    {
-        printf("注册错误:%s\n",m.Content);
-        Login(c);
-    }
-}
-
 MSG ChatToClient()
 {
     MSG m;
@@ -56,12 +29,14 @@ void AnalysisRecv(MSG *m)
     switch(m->flag)
     {
     case CHAT:
-        
     case BROADCAST:
         printf("接收到来自|%s|的消息:%s\n",m->FromName,m->Content);
         break;
     case ONLINELIST:
         ShowOnlineList(m);
+        break;
+    case SENDFILE:
+        WriteToLocal(m);
         break;
     defalut:
         break;
@@ -83,6 +58,45 @@ void * ThreadHandle(void* arg)
     }
 }
 
+void LoginSignUp(TcpC*c)
+{
+    while(1)
+    {
+        int choice = LoginFace();
+        MSG m;
+        switch (choice)
+        {
+        case LOGIN:
+            m = Login(MyName);
+            TcpClientSend(c,&m,sizeof(MSG));
+            if(TcpClientRecv(c,&m,sizeof(MSG)) == false)
+            {
+                exit(-1);
+            }
+            if(IsLoginSuccess(&m)== true)
+            {
+                return;
+            }
+            break;
+        case SIGNUP:
+            m = SignUp(MyName);
+            TcpClientSend(c,&m,sizeof(MSG));
+            if(TcpClientRecv(c,&m,sizeof(MSG)) == false)
+            {
+                exit(-1);
+            }
+            if(IsSignUpSuccess(&m) == true)
+            {
+                return;
+            }
+        default:
+            break;
+        }
+        sleep(2);
+        system("clear");
+    }
+}
+
 int main(int argc,char * argv[])
 {
     if(argc != 3)
@@ -92,7 +106,8 @@ int main(int argc,char * argv[])
     }
     TcpC*c = TcpClientInit(argv[1],atoi(argv[2]));
 
-    Login(c);
+    LoginSignUp(c);    
+
     Thread * t = ThreadInit(ThreadHandle,c);
     while(1)
     {
@@ -113,14 +128,37 @@ int main(int argc,char * argv[])
             strcpy(m.FromName,MyName);
             TcpClientSend(c,&m,sizeof(m));
             break; 
-        default:
-            break;
 
         case ONLINELIST:
             m = GetServerOnlineList();
             strcpy(m.FromName,MyName);
             TcpClientSend(c,&m,sizeof(m));
             break; 
+
+        case SENDFILE:
+            m = SendFile();
+            strcpy(m.FromName,MyName);
+            char *fileName = GetFileNameFromPath(m.Content);
+            PackFile * pf = PacketFileInit(m.Content);
+            
+            memset(m.Content,0,sizeof(m.Content));
+            strcpy(m.Content + 4,fileName);
+            int size = 1000;
+            int count = 0;
+            while(IsFileEnd(pf) == false)
+            {
+                ReadFromFile(pf,m.Content + 24,&size);
+                //填入读取的文件内容大小
+                memcpy(m.Content,&size,sizeof(int));
+                TcpClientSend(c,&m,sizeof(MSG));
+
+                count++;
+                printf("这是第%d包数据,大小:%d\n",count,size);
+            }
+            free(fileName);
+            ClearPacketFile(pf);
+        default:
+            break;
         }
     }
     return 0;

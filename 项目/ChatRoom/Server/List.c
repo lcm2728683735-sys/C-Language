@@ -30,11 +30,13 @@ void List_Destroy(List *list) {
 
 // 尾部插入
 bool List_PushBack(List *list, void *data) {
-    if (list == NULL) {
+    if (list == NULL) 
+    {
         return false;
     }
     Node *newNode = (Node*)malloc(sizeof(Node));
-    if (newNode == NULL) {
+    if (newNode == NULL) 
+    {
         return false;
     }
     
@@ -130,14 +132,16 @@ bool List_IsEmpty(const List *list) {
 }
 
 
-void List_Travel(List *list, ListActionFunc action) {
+void List_Travel(List *list, ListActionFunc action) 
+{
     if (list == NULL || action == NULL) 
     {
         return;
     }
     
     Node *current = list->head;
-    while (current != NULL) {
+    while (current != NULL) 
+    {
         action(current->data); // 对当前节点的数据执行回调操作
         current = current->next;
     }
@@ -240,10 +244,24 @@ void List_RemoveByIndex(List *list, int index, void (*freePtr)(void *))
     list->size--;
 }
 
+void *List_FindByIndex(List *list, int index)
+{
+    if(index < 0 || index >= list->size)
+    {
+        printf("非法的查找位置\n");
+        return NULL;
+    }
 
+    Node *current = list->head;
 
+    for (int i = 0; i < index; i++) 
+    {
+        current = current->next;
+    }
+    return current->data;
+}
 
-void List_RemoveByElement(List *list,void *target,ListMatchFunc matchFunc,void (*freePtr)(void *))
+void List_RemoveByElement(List *list, void *target, ListMatchFunc matchFunc, void (*freePtr)(void *))
 {
     if (list == NULL || matchFunc == NULL)
         return;
@@ -269,4 +287,40 @@ void List_RemoveByElement(List *list,void *target,ListMatchFunc matchFunc,void (
             travelPoint = travelPoint->next;
         }
     }
+}
+
+void List_Init(List *list) 
+{
+    if (list != NULL) 
+    {
+        list->head = NULL;
+        list->tail = NULL;
+        list->size = 0;
+    }
+}
+
+void List_InsertTail(List *list, void *data)
+{
+    if (list == NULL) 
+    {
+        return;
+    }
+    Node *newNode = (Node*)malloc(sizeof(Node));
+    if (newNode == NULL) 
+    {
+        return;
+    }
+    
+    newNode->data = data;
+    newNode->next = NULL;
+    newNode->prev = list->tail;
+
+    if (list->tail == NULL) {
+        // 链表为空时，head 和 tail 都指向新节点
+        list->head = newNode;
+    } else {
+        list->tail->next = newNode;
+    }
+    list->tail = newNode;
+    list->size++;
 }

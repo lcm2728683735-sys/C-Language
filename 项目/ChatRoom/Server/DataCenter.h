@@ -6,5 +6,5 @@
 bool DataCenterInit();
 bool IsUserExist(const char* name);
 bool AddNewUser(const char * name ,const char * passwd);
-
+bool IsAccountEqual(const char * name,const char * passwd);
 #endif

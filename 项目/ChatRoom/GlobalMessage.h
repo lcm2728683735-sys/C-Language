@@ -18,8 +18,9 @@ bool IsClientNameEqual(void * ClientPtr,void * clientName);
 bool IsClientSockEqual(void * ClientPtr,void * sock);
 enum Request
 {
-    LOGIN,
-    CHAT,
+    LOGIN = -2,
+    SIGNUP = -1,
+    CHAT = 1,
     BROADCAST,
     ONLINELIST, //在线链表
     SENDFILE

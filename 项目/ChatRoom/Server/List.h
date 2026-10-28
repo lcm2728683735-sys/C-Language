@@ -23,6 +23,8 @@ typedef void (*ListActionFunc)(void *data);
 // 定义带目标参数的匹配函数指针类型（返回 bool 表示是否匹配成功）
 typedef bool (*ListMatchFunc)(void *data, void *target);
 
+
+void List_Init(List *list);
 // 查找函数声明（返回找到的数据指针 void*）
 List* List_Create(void);
 void List_Destroy(List *list);
@@ -30,6 +32,7 @@ void List_Destroy(List *list);
 // 2. 增删操作
 bool List_PushBack(List *list, void *data);
 bool List_PushFront(List *list, void *data);
+void List_InsertTail(List *list, void *data);
 void* List_PopBack(List *list);
 void* List_PopFront(List *list);
 
@@ -40,7 +43,7 @@ bool List_IsEmpty(const List *list);
 void List_Travel(List *list,ListActionFunc action);
 
 List List_FindElement(List *list, void *target, ListMatchFunc matchFunc);
-
+void* List_FindByIndex(List * list,int index);
 void List_RemoveByIndex(List *list, int index, void (*freePtr)(void *));
 void List_RemoveByElement(List *list,void *target,ListMatchFunc matchFunc,void (*freePtr)(void *));
 
