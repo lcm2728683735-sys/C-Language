@@ -94,6 +94,7 @@ int Interface()
     printf("2、广播\n");
     printf("3、查看在线用户\n");
     printf("4、文件发送\n");
+    printf("5、我的网盘\n");
     printf("===============================================================\n");
     printf("请选择你要的功能:");
     int choice = 0;
@@ -183,6 +184,29 @@ void WriteToLocal(MSG *m)
     fclose(f);
 }
 
+
+int CloudInterface()
+{
+    printf("=====================我的网盘=====================\n");
+    printf("1.查看网盘文件\n");
+    printf("2.上传文件\n");
+    printf("3.下载文件\n");
+    printf("4.退回到主界面\n");
+    printf("====================================================\n");
+    int choice = 0;
+    printf("请输入你的选择:");
+    scanf("%d",&choice);
+    return FILELIST + choice - 1;
+}
+
+MSG UpLoadFile()
+{
+    MSG m;
+    m.flag = UPLOAD;
+    printf("请输入上传的文件路径:");
+    scanf("%s",m.Content);
+    return m;
+}
 
 struct PacketFile
 {

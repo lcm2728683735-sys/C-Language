@@ -6,7 +6,7 @@
 #include "StdThread.h"
 #include <unistd.h>
 #define ip "192.168.191.129"
-#define port 8080
+#define port 8084
 
 
 static char MyName[NameSize];
@@ -30,16 +30,30 @@ void AnalysisRecv(MSG *m)
     {
     case CHAT:
     case BROADCAST:
+    {
         printf("接收到来自|%s|的消息:%s\n",m->FromName,m->Content);
         break;
+    }
     case ONLINELIST:
+    {
         ShowOnlineList(m);
         break;
+    }
     case SENDFILE:
+    {
         WriteToLocal(m);
         break;
-    defalut:
+        default:
+            break;
+    }
+    case UPLOAD:
+    {
+        if(strcmp(m->Content,"UPDATEOK")== 0)
+        {
+            printf("上传文件成功!\n");
+        }
         break;
+    }
     }
 }
 
@@ -97,15 +111,49 @@ void LoginSignUp(TcpC*c)
     }
 }
 
+void SendFileToServer(MSG * m ,TcpC *c)
+{
+    char *fileName = GetFileNameFromPath(m->Content);
+    PackFile * pf = PacketFileInit(m->Content);
+    
+    memset(m->Content,0,sizeof(m->Content));
+    strcpy(m->Content + 4,fileName);
+    int size = 1000;
+    int count = 0;
+    while(IsFileEnd(pf) == false)
+    {
+        ReadFromFile(pf,m->Content + 24,&size);
+        //填入读取的文件内容大小
+        memcpy(m->Content,&size,sizeof(int));
+        TcpClientSend(c,m,sizeof(MSG));
+        count++;
+        printf("这是第%d包数据,大小:%d\n",count,size);
+    }
+
+    //传结束的空包
+    size = -1;
+    memcpy(m->Content,&size,sizeof(int));
+    TcpClientSend(c,m,sizeof(MSG));
+    free(fileName);
+    ClearPacketFile(pf);
+}
+
+
 int main(int argc,char * argv[])
 {
-    if(argc != 3)
+    // if(argc != 3)
+    // {
+    //     printf("参数数量不对！\n");
+    //     return -1;
+    // }
+    // TcpC*c = TcpClientInit(argv[1],atoi(argv[2]));
+    TcpC*c = TcpClientInit("192.168.191.129",8080);
+    if (c == NULL) 
     {
-        printf("参数数量不对！\n");
+        perror("TcpClientInit 链接服务器失败");
+        printf("排查提示：请检查目标 IP (%s) 和端口 (%d) 是否正确，或服务端是否已开启。\n", ip, port);
         return -1;
     }
-    TcpC*c = TcpClientInit(argv[1],atoi(argv[2]));
-
     LoginSignUp(c);    
 
     Thread * t = ThreadInit(ThreadHandle,c);
@@ -138,28 +186,39 @@ int main(int argc,char * argv[])
         case SENDFILE:
             m = SendFile();
             strcpy(m.FromName,MyName);
-            char *fileName = GetFileNameFromPath(m.Content);
-            PackFile * pf = PacketFileInit(m.Content);
-            
-            memset(m.Content,0,sizeof(m.Content));
-            strcpy(m.Content + 4,fileName);
-            int size = 1000;
-            int count = 0;
-            while(IsFileEnd(pf) == false)
-            {
-                ReadFromFile(pf,m.Content + 24,&size);
-                //填入读取的文件内容大小
-                memcpy(m.Content,&size,sizeof(int));
-                TcpClientSend(c,&m,sizeof(MSG));
-
-                count++;
-                printf("这是第%d包数据,大小:%d\n",count,size);
-            }
-            free(fileName);
-            ClearPacketFile(pf);
-        default:
+            SendFileToServer(&m,c);
             break;
+        case MYCLOUD:
+            while(1)
+            {
+                int choice = CloudInterface();
+                switch(choice)
+            {
+            case FILELIST:
+            {    
+                break;
+            }
+            case UPLOAD:
+            {
+                MSG m = UpLoadFile();
+                strcpy(m.FromName,MyName);
+                SendFileToServer(&m,c);
+            }
+            case DOWNLOAD:
+            {
+                break;
+            }
+            default:
+            {
+                break;
+            }
         }
     }
-    return 0;
+    default:
+    {
+        break;
+    }
+    } 
+}
+return 0;
 }

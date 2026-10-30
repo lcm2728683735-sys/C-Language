@@ -29,6 +29,11 @@ char * GetFileNameFromPath(const char * filePath);
 //写数据到本地文件
 void WriteToLocal(MSG *m);
 
+//网盘界面
+int CloudInterface();
+//上传文件
+MSG UpLoadFile();
+
 struct PacketFile;
 typedef struct PacketFile PackFile;
 

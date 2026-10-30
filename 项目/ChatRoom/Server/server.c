@@ -3,14 +3,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include "StdThread.h"
-#include "../GlobalMessage.h"
 #include "List.h"
 #include "DataCenter.h"
 #include "StdThreadPool.h"
+#include "FileSystem.h"
+#include "../GlobalMessage.h"
+
 #define ip "192.168.191.129"
 #define port 8080
 
-List ClientList = {0};
+List ClientList = {0};  //在线用户列表
+FileSys *fs;        //文件系统
 
 char* GetOnlinelist()
 {
@@ -47,6 +50,7 @@ void SolveRequest(MSG *m,int clientSock)
                 List_Travel(&ClientList,PrintCInfo);
                 memset(m->Content,ContentSize,0);
                 strcpy(m->Content,"注册成功");
+                CreateNewDirInfs(fs,m->FromName);
             }
             else
             {
@@ -131,6 +135,22 @@ void SolveRequest(MSG *m,int clientSock)
         free(content);
         break;
     }
+    case UPLOAD:
+    {
+        int size = 0;
+        memcpy(&size,m->Content,4);
+        if(size == -1)
+        {
+            memset(m->Content,0,sizeof(m->Content));
+            strcpy(m->Content,"UPDATEOK");
+            TcpServerSend(clientSock,m,sizeof(MSG));
+            break;
+        }
+        char fileName[NameSize] = {0};
+        strcpy(fileName,m->Content + 4);    
+        WriteFileTofs(fs,m->FromName,fileName,m->Content+24,size);
+        break;
+    }
     default:
         break;
     }
@@ -164,6 +184,7 @@ int main ()
     }
     TcpS *s = TcpServerInit(ip,port);
     ThreadP * p = ThreadPoolInit(10,2,10,3600);
+    fs = FileSystemInit("./filesystem");
 
     int clientSock = -1;
     while((clientSock = TcpServerAccept(s)) >= 0)

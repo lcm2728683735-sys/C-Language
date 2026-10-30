@@ -23,7 +23,12 @@ enum Request
     CHAT = 1,
     BROADCAST,
     ONLINELIST, //在线链表
-    SENDFILE
+    SENDFILE,
+    MYCLOUD ,
+
+    FILELIST =128,//查看网盘文件列表
+    UPLOAD,
+    DOWNLOAD
 };
 
 
