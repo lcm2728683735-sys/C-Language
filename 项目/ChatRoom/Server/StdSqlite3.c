@@ -40,9 +40,9 @@ bool SQLExec(SQL *s, const char *sql)
 char **GetTableInfo(SQL *s, const char *sql, int *row, int *column)
 {
     char* *result;
-    row =0;
-    column =0;
-    int ret = sqlite3_get_table(s->db,sql,&result,row,column,NULL);
+    if (row) *row = 0;
+    if (column) *column = 0;
+    int ret = sqlite3_get_table(s->db, sql, &result, row, column, NULL);
     if(ret != SQLITE_OK)
     {
         printf("get table error : %s\n",sqlite3_errmsg(s->db));
@@ -59,7 +59,7 @@ void FreeTableInfo(char **result)
 int GetTableLen(SQL *s, const char *tableName)
 {
     char sql[1024] = {0};
-    sprintf(sql,"select cout(*) from %s;",tableName);
+    sprintf(sql,"select count(*) from %s;",tableName);
     char ** result = GetTableInfo(s,sql,NULL,NULL);
     if(result == NULL)
         return -1;

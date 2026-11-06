@@ -86,21 +86,3 @@ bool isDirExist(FileSys *fs, const char *DirName)
     return false;
 }
 
-void WriteFileTofs(FileSys *fs, const char *DirName, const char *fileName, void *p, size_t size)
-{
-    char filePath[1024] = {0};
-    sprintf(filePath,"%s/%s/%s",fs->dirPath,DirName,fileName);
-    FILE *f = fopen(filePath,"a");
-    fwrite(p,size,1,f);
-    fclose(f);
-}
-
-
-char *GetFileList(FileSys *fs, const char *DirName)
-{
-    char list[1024] = {0};
-    char DirPath[1024] = {0};
-    sprintf(DirPath,"%s/%s",fs->dirPath,DirName);
-    opendir();
-    return nullptr;
-}

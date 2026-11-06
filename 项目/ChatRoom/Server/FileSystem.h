@@ -16,6 +16,7 @@ bool isDirExist(FileSys *fs,const char * DirName);
 //在根目录下的文件夹内写入文件数据
 void WriteFileTofs(FileSys *fs, const char *DirName, const char *fileName, void *p, size_t size);
 //查看文件夹下的文件列表
-char * GetFileList(FileSys *fs,const char * DirName);
+char* GetFileList(FileSys *fs,const char * DirName);
+
 
 #endif

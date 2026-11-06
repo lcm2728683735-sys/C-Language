@@ -8,6 +8,7 @@
 #include "StdThreadPool.h"
 #include "FileSystem.h"
 #include "../GlobalMessage.h"
+#include <errno.h>
 
 #define ip "192.168.191.129"
 #define port 8080
@@ -149,6 +150,112 @@ void SolveRequest(MSG *m,int clientSock)
         char fileName[NameSize] = {0};
         strcpy(fileName,m->Content + 4);    
         WriteFileTofs(fs,m->FromName,fileName,m->Content+24,size);
+        break;
+    }
+    case FILELIST:
+    {
+        char *list = GetFileList(fs,m->FromName);
+        printf("文件列表：%s\n",list);
+        if(list == NULL)
+        {
+            memset(m->Content,0,sizeof(m->Content));
+            strcpy(m->Content,"FILE ERROR!\n");
+        }
+        else
+        {
+            memset(m->Content,0,sizeof(m->Content));
+            strcpy(m->Content,list);
+            free(list);
+        }
+        TcpServerSend(clientSock,m,sizeof(MSG));
+        break;
+    }
+
+    case DOWNLOAD:
+    {
+        char fileName[NameSize] = {0};
+        strncpy(fileName, m->Content, NameSize - 1);
+
+        char fullPath[1024] = {0};
+        snprintf(fullPath, sizeof(fullPath), "./filesystem/%s/%s", m->FromName, fileName);
+        printf("用户 |%s| 请求下载文件，服务器路径为: [%s]\n", m->FromName, fullPath);
+
+        FILE *f = fopen(fullPath, "rb");
+        if (f == NULL)
+        {
+            printf("*错误* 文件打开失败，原因: %s\n", strerror(errno));
+            int errSize = -1;
+            MSG errMsg;
+            memset(&errMsg, 0, sizeof(MSG));
+            errMsg.flag = DOWNLOAD;
+            memcpy(errMsg.Content, &errSize, sizeof(int));
+            TcpServerSend(clientSock, &errMsg, sizeof(MSG));
+            break;
+        }
+
+        // 获取文件总大小
+        fseek(f, 0, SEEK_END);
+        int64_t fileSize = (int64_t)ftell(f);
+        fseek(f, 0, SEEK_SET);
+
+        // 定义临时发包结构体，切断内存污染
+        MSG sendMsg;
+        memset(&sendMsg, 0, sizeof(MSG));
+        sendMsg.flag = DOWNLOAD; // 强制锁死 flag
+
+        struct MetaInfo 
+        {
+            int32_t type;
+            int64_t total_size;
+        } 
+        __attribute__((packed));
+
+        struct MetaInfo info;
+        info.type = -2;
+        info.total_size = fileSize;
+
+        // 拷贝至临时结构体中发送
+        memcpy(sendMsg.Content, &info, sizeof(struct MetaInfo));
+        TcpServerSend(clientSock, &sendMsg, sizeof(MSG));
+        
+        //防止粘包
+        usleep(30000); 
+
+        //开始循环发数据包
+        int64_t currentPosition = 0;
+        int max_chunk = sizeof(sendMsg.Content) - 24; 
+
+        while (currentPosition < fileSize)
+        {
+            int size = max_chunk;
+            if (size + currentPosition > fileSize) 
+            {
+                size = (int)(fileSize - currentPosition);
+            }
+
+            // 每次循环只清理局部临时的发送缓冲区，安全隔离
+            memset(sendMsg.Content, 0, sizeof(sendMsg.Content));
+            
+            // 安全填充传输协议数据
+            memcpy(sendMsg.Content, &size, sizeof(int));
+            strncpy(sendMsg.Content + 4, fileName, 19);
+            fread(sendMsg.Content + 24, 1, size, f);
+
+            TcpServerSend(clientSock, &sendMsg, sizeof(MSG));
+            
+            currentPosition += size;
+            usleep(2000); // 局域网下留出写磁盘时间
+        }
+
+        // 3. 发送结束空包
+        int endSize = -1;
+        memset(sendMsg.Content, 0, sizeof(sendMsg.Content));
+        memcpy(sendMsg.Content, &endSize, sizeof(int));
+        strncpy(sendMsg.Content + 4, fileName, 19);
+        TcpServerSend(clientSock, &sendMsg, sizeof(MSG));
+
+        fclose(f);
+        printf("文件传输完毕。\n");
         break;
     }
     default:

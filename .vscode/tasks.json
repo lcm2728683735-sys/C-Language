@@ -11,8 +11,10 @@
                 "../GlobalMessage.c",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
-                "-lsqlite3"
-                
+                "-lsqlite3",
+                "-pthread",
+                "-lssl",
+                "-lcrypto"
             ],
             "options": {
                 "cwd": "${fileDirname}"

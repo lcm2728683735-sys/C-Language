@@ -27,12 +27,18 @@ MSG SendFile();
 //获取文件路径
 char * GetFileNameFromPath(const char * filePath);
 //写数据到本地文件
-void WriteToLocal(MSG *m);
+void WriteToLocal(MSG *m, int mode, const char *realFileName);
 
 //网盘界面
 int CloudInterface();
+
+
+//显示文件列表
+void ShowFileList(MSG* m);
 //上传文件
 MSG UpLoadFile();
+//下载文件
+MSG DownLoadFile();
 
 struct PacketFile;
 typedef struct PacketFile PackFile;

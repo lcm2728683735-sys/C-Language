@@ -170,19 +170,36 @@ char *GetFileNameFromPath(const char *filePath)
     return result;
 }
 
-void WriteToLocal(MSG *m)
+//mode 1 清空新建 mode 2 末尾追加写猜
+void WriteToLocal(MSG *m, int mode, const char *realFileName)
 {
-    int size = 0;
-    memcpy(&size,m->Content,sizeof(int));
-    char fileName[ContentSize] = {0};
-    strcpy(fileName,m->Content + 4);
-
     char filePath[ContentSize] = {0};
-    sprintf(filePath,"./%s",fileName);
-    FILE *f = fopen(filePath,"a");
-    fwrite(m->Content+24,size,1,f);
+
+    if (realFileName != NULL && strlen(realFileName) > 0) 
+    {
+        sprintf(filePath, "./%s", realFileName);
+    } else {
+        sprintf(filePath, "./%s", m->Content + 4); 
+    }
+
+    FILE *f = fopen(filePath, (mode == 1) ? "wb" : "ab");
+    if(f == NULL)
+    {
+        printf("*错误* 无法打开本地文件进行写入: %s\n", filePath);
+        return;
+    }
+
+    int32_t size = 0;
+    memcpy(&size, m->Content, sizeof(int));
+
+    if(size > 0)
+    {
+        fwrite(m->Content + 24, size, 1, f);
+    }
+    
     fclose(f);
 }
+
 
 
 int CloudInterface()
@@ -199,6 +216,64 @@ int CloudInterface()
     return FILELIST + choice - 1;
 }
 
+char** Split(const char * str,const char *delim,int * size)
+{
+    char *splitStr = strdup(str);
+
+    char** result = (char **)malloc(sizeof(char*) * 50);
+    if(result == NULL)
+    {
+        printf("Split malloc error!\n");
+        return NULL;
+    }
+
+    int count = 0;
+    char *dest = strtok(splitStr,delim);
+    while(dest != NULL)
+    {
+        result[count++] = strdup(dest);
+        dest = strtok(NULL,delim);
+    }
+    free(splitStr);
+    *size = count;
+    return result;
+}
+
+void FreeStrList(char ** strList,int size)
+{
+    for(int i = 0;i < size;i++)
+    {
+        free(strList[i]);
+    }
+    free(strList);
+}
+
+void ShowFileList(MSG *m)
+{
+    if(strcmp(m->Content,"FILE ERROR") == 0)
+    {
+        printf("获取网盘文件失败");
+        return;
+    }
+
+    int fileCount = 0;
+    char ** file = Split(m->Content,",",&fileCount);
+    for(int i = 0;i < fileCount; i++)
+    {
+        int count = 0;
+        char ** fileInfo = Split(file[i],";",&count);
+        if(count != 2)
+        {
+            FreeStrList(fileInfo,count);
+            continue;
+        }
+        printf("%d : 文件名:|%s| 文件大小：|%s|\n",i+1,fileInfo[0],fileInfo[1]);
+        FreeStrList(fileInfo,count);
+    }
+    FreeStrList(file,fileCount);
+}
+
+
 MSG UpLoadFile()
 {
     MSG m;
@@ -207,6 +282,24 @@ MSG UpLoadFile()
     scanf("%s",m.Content);
     return m;
 }
+
+
+MSG DownLoadFile()
+{
+    MSG m;
+    memset(&m, 0, sizeof(MSG)); 
+    
+    m.flag = DOWNLOAD;
+
+    char filename[NameSize] = {0};
+    printf("请输入要下载的文件名(包含后缀): ");
+    scanf("%s", filename);
+
+    strncpy(m.Content, filename, sizeof(m.Content) - 1);
+    return m;
+}
+
+
 
 struct PacketFile
 {

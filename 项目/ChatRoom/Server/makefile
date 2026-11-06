@@ -2,7 +2,7 @@
 src = $(wildcard *.c) ../GlobalMessage.c
 
 server: $(src)
-	gcc $(src) -o server -lsqlite3
+	gcc $(src) -o server -lsqlite3 -pthread -lssl -lcrypto
 
 .PHONY: all clean
 

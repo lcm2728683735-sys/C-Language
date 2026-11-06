@@ -4,7 +4,8 @@
 #include <stdbool.h>
 
 #define NameSize 20
-#define ContentSize 1024
+#define ContentSize 65536
+
 struct ClientInfo
 {
     char ClientName[NameSize];
@@ -28,7 +29,8 @@ enum Request
 
     FILELIST =128,//查看网盘文件列表
     UPLOAD,
-    DOWNLOAD
+    DOWNLOAD,
+    EXIT
 };
 
 
